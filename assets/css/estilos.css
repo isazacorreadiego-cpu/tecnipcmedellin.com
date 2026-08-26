@@ -1,0 +1,1459 @@
+/* ==========================================================================
+   TecniPC Medellín — hoja de estilos única
+   Paleta y materiales extraídos de las imágenes de marca.
+   ========================================================================== */
+
+/* --- 1. Tokens ---------------------------------------------------------- */
+:root {
+  /* Color: muestreado del logo, la cabecera y los renders de componentes */
+  --negro:        #04070e;   /* fondo base, tomado del pie de página */
+  --placa:        #0a1322;   /* superficie, como el sustrato de una PCB */
+  --placa-alta:   #0f1e33;   /* superficie elevada */
+  --pista:        #14375f;   /* bordes y divisores: la pista de cobre */
+  --pista-tenue:  #0e2444;
+  --neon:         #0b7bff;   /* azul de acción, el dominante en los renders */
+  --neon-hondo:   #0847a8;
+  --cian:         #22d3f5;   /* señal viva, del arco del logo */
+  --contacto:     #e8c46a;   /* oro de los pines: solo para garantía */
+  --acero:        #a7b4c6;   /* texto secundario, del cromado del logotipo */
+  --acero-tenue:  #6b7c93;
+  --blanco:       #eef4fb;
+
+  /* Tipografía */
+  --display: 'Archivo', 'Arial Narrow', system-ui, sans-serif;
+  --cuerpo:  'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --dato:    'IBM Plex Mono', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* Escala tipográfica */
+  --t-xs:   0.75rem;
+  --t-sm:   0.875rem;
+  --t-base: 1rem;
+  --t-md:   1.125rem;
+  --t-lg:   clamp(1.25rem, 0.9rem + 1.1vw, 1.6rem);
+  --t-xl:   clamp(1.7rem, 1.1rem + 2.4vw, 2.6rem);
+  --t-2xl:  clamp(2rem, 1.3rem + 2.4vw, 3.1rem);
+  --t-3xl:  clamp(2.5rem, 1.5rem + 3.1vw, 4.1rem);
+
+  /* Ritmo */
+  --ancho:  1220px;
+  --canal:  clamp(1.15rem, 4vw, 3rem);
+  --aire:   clamp(4.5rem, 9vw, 8rem);
+  --radio:  14px;
+  --radio-sm: 8px;
+
+  /* Materiales */
+  --borde:  1px solid var(--pista-tenue);
+  --brillo-neon: 0 0 0 1px rgb(11 123 255 / 0.35), 0 12px 40px -12px rgb(11 123 255 / 0.55);
+  --curva:  cubic-bezier(0.22, 0.68, 0.28, 1);
+}
+
+/* --- 2. Base ------------------------------------------------------------ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--negro);
+  color: var(--blanco);
+  font-family: var(--cuerpo);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Resplandor ambiental fijo: la penumbra azul del taller */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 42% at 78% 4%,  rgb(11 123 255 / 0.16), transparent 68%),
+    radial-gradient(48% 38% at 6% 52%,  rgb(34 211 245 / 0.07), transparent 70%);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  /* Palabras largas como "Almacenamiento" no caben en pantallas de 320 px */
+  overflow-wrap: break-word;
+  hyphens: auto;
+  font-variation-settings: 'wdth' 116;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+p  { margin: 0; text-wrap: pretty; }
+ul { margin: 0; padding: 0; list-style: none; }
+img { max-width: 100%; height: auto; display: block; }
+
+a {
+  color: var(--cian);
+  text-decoration-color: rgb(34 211 245 / 0.35);
+  text-underline-offset: 3px;
+  transition: color 0.2s var(--curva);
+}
+a:hover { color: var(--blanco); }
+
+:focus-visible {
+  outline: 2px solid var(--cian);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.salto-contenido {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  padding: 0.8rem 1.2rem;
+  background: var(--neon);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0 0 var(--radio-sm) 0;
+}
+.salto-contenido:focus { left: 0; }
+
+/* --- 3. Estructura ------------------------------------------------------ */
+.envoltura {
+  width: min(100% - var(--canal) * 2, var(--ancho));
+  margin-inline: auto;
+}
+
+.bloque {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--aire);
+}
+.bloque--ajustado { padding-block: calc(var(--aire) * 0.62); }
+
+.filo {
+  border-top: 1px solid rgb(20 55 95 / 0.55);
+}
+
+/* Encabezado de sección: rótulo técnico + título ancho */
+.rotulo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 1.1rem;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cian);
+}
+.rotulo::before {
+  content: '';
+  width: 26px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--cian));
+  flex: none;
+}
+
+.titulo-bloque { font-size: var(--t-2xl); }
+
+.entradilla {
+  max-width: 58ch;
+  margin-top: 1.1rem;
+  color: var(--acero);
+  font-size: var(--t-md);
+}
+
+.cabeza-bloque { margin-bottom: clamp(2.4rem, 5vw, 3.6rem); }
+
+/* --- 4. Barra superior -------------------------------------------------- */
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s var(--curva), border-color 0.3s var(--curva),
+              backdrop-filter 0.3s var(--curva);
+}
+.barra[data-fija='si'] {
+  background: rgb(4 7 14 / 0.86);
+  backdrop-filter: blur(14px) saturate(1.3);
+  border-bottom-color: rgb(20 55 95 / 0.7);
+}
+
+/* La barra va de lado a lado: el logo pega a la izquierda y el menú a la
+   derecha, sin el encajonado de 1220 px que usa el resto del contenido.
+   Esta regla va después de .envoltura en la hoja, así que la anula. */
+.barra__interior {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  min-height: 76px;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: clamp(1.15rem, 2.6vw, 3rem);
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  text-decoration: none;
+  color: inherit;
+  flex: none;
+}
+.marca img { width: 40px; height: auto; }
+.marca__texto { display: flex; flex-direction: column; line-height: 1; }
+.marca__nombre {
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 112;
+  font-weight: 800;
+  font-size: 1.16rem;
+  letter-spacing: -0.01em;
+}
+.marca__lugar {
+  font-family: var(--dato);
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
+  color: var(--acero-tenue);
+  margin-top: 3px;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+  margin-left: auto;
+}
+.menu a {
+  color: var(--acero);
+  text-decoration: none;
+  font-size: var(--t-sm);
+  font-weight: 500;
+  position: relative;
+  padding-block: 4px;
+}
+.menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--cian);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.28s var(--curva);
+}
+.menu a:hover, .menu a[aria-current='page'] { color: var(--blanco); }
+.menu a:hover::after, .menu a[aria-current='page']::after { transform: scaleX(1); }
+
+.boton-menu {
+  display: none;
+  margin-left: auto;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: var(--borde);
+  border-radius: var(--radio-sm);
+  color: var(--blanco);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+.boton-menu span,
+.boton-menu span::before,
+.boton-menu span::after {
+  content: '';
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: currentColor;
+  transition: transform 0.28s var(--curva), opacity 0.2s;
+}
+.boton-menu span::before { transform: translateY(-6px); }
+.boton-menu span::after  { transform: translateY(4.5px); }
+.boton-menu[aria-expanded='true'] span { background: transparent; }
+.boton-menu[aria-expanded='true'] span::before { transform: rotate(45deg); }
+.boton-menu[aria-expanded='true'] span::after  { transform: rotate(-45deg) translateY(0); }
+
+/* --- 5. Botones --------------------------------------------------------- */
+.boton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radio-sm);
+  font-family: var(--cuerpo);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: transform 0.2s var(--curva), box-shadow 0.25s var(--curva),
+              background 0.25s var(--curva), border-color 0.25s var(--curva);
+}
+.boton:active { transform: translateY(1px); }
+.boton svg { width: 17px; height: 17px; flex: none; }
+
+.boton--principal {
+  background: linear-gradient(150deg, var(--neon), var(--neon-hondo));
+  color: #fff;
+  box-shadow: var(--brillo-neon);
+}
+.boton--principal:hover {
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 0 1px rgb(34 211 245 / 0.5), 0 18px 44px -12px rgb(11 123 255 / 0.8);
+}
+
+.boton--linea {
+  background: rgb(15 30 51 / 0.55);
+  border-color: var(--pista);
+  color: var(--blanco);
+}
+.boton--linea:hover {
+  color: #fff;
+  border-color: var(--cian);
+  background: rgb(20 55 95 / 0.45);
+  transform: translateY(-2px);
+}
+
+.boton--ancho { width: 100%; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+
+/* --- 6. Portada: banda de cabecera a todo el ancho ---------------------- */
+/* La imagen de marca tiene el sujeto a la derecha y la zona oscura a la
+   izquierda. Se usa a sangre completa y el titular se monta sobre esa zona,
+   que es para lo que la composición fue hecha. */
+.portada { position: relative; padding: 0; }
+
+.portada__banda {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(430px, 56vh, 620px);
+  padding-block: clamp(2.5rem, 5vw, 4rem) clamp(5rem, 9vw, 8rem);
+  overflow: hidden;
+}
+.portada__banda picture,
+.portada__banda img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.portada__banda img { object-fit: cover; object-position: 72% 45%; }
+
+/* El velo protege la legibilidad del titular y funde la banda con la página */
+.portada__velo {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--negro) 4%, rgb(4 7 14 / 0.85) 40%, rgb(4 7 14 / 0.58) 66%, rgb(4 7 14 / 0.2) 85%, transparent 97%),
+    linear-gradient(to bottom, rgb(4 7 14 / 0.72) 0%, rgb(4 7 14 / 0.48) 16%, transparent 36%, rgb(4 7 14 / 0.55) 78%, var(--negro) 100%);
+}
+
+.portada__texto { position: relative; z-index: 2; }
+
+.portada__titulo {
+  font-size: var(--t-3xl);
+  font-variation-settings: 'wdth' 118;
+  font-weight: 900;
+  max-width: 20ch;
+  text-shadow: 0 2px 24px rgb(4 7 14 / 0.85);
+}
+.portada__titulo em {
+  font-style: normal;
+  display: block;
+  background: linear-gradient(96deg, var(--cian), #57a8ff 58%, #a8ceff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.portada__entrada {
+  max-width: 44ch;
+  margin-top: 1.4rem;
+  color: var(--acero);
+  font-size: var(--t-md);
+  text-shadow: 0 1px 14px rgb(4 7 14 / 0.9);
+}
+
+.sellos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.4rem;
+  margin-top: 1.6rem;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.05em;
+  color: var(--acero);
+}
+.sellos li { display: flex; align-items: center; gap: 0.45rem; }
+.sellos li::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: var(--contacto);
+  box-shadow: 0 0 8px var(--contacto);
+  flex: none;
+}
+
+/* El panel se monta sobre el borde inferior de la banda */
+.portada__panel {
+  position: relative;
+  z-index: 3;
+  margin-top: clamp(-5.5rem, -6vw, -3rem);
+  padding-bottom: var(--aire);
+}
+
+/* --- 7. Diagnóstico: el elemento firma ---------------------------------- */
+.diagnostico {
+  background:
+    linear-gradient(158deg, rgb(15 30 51 / 0.92), rgb(10 19 34 / 0.96));
+  border: 1px solid var(--pista);
+  border-radius: var(--radio);
+  overflow: hidden;
+  box-shadow: 0 26px 70px -30px rgb(0 0 0 / 0.95);
+}
+
+.diagnostico__cinta {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1.15rem;
+  border-bottom: 1px solid var(--pista-tenue);
+  background: rgb(4 7 14 / 0.55);
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.diagnostico__pulso {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--cian);
+  box-shadow: 0 0 10px var(--cian);
+  animation: pulso 2.2s ease-in-out infinite;
+  flex: none;
+}
+@keyframes pulso { 50% { opacity: 0.25; transform: scale(0.75); } }
+
+.diagnostico__cuerpo { padding: clamp(1.15rem, 2.2vw, 1.6rem); }
+
+/* En pantalla ancha, los síntomas a la izquierda y la lectura a la derecha */
+@media (min-width: 900px) {
+  .diagnostico__cuerpo {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: clamp(1.4rem, 2.5vw, 2.2rem);
+    align-items: start;
+  }
+  .lectura {
+    margin-top: 0;
+    padding-top: 0;
+    padding-left: clamp(1.4rem, 2.5vw, 2.2rem);
+    border-top: 0;
+    border-left: 1px dashed var(--pista-tenue);
+  }
+}
+
+.diagnostico__eleccion .nota { margin-top: 1.1rem; }
+
+.diagnostico__pregunta {
+  font-family: var(--cuerpo);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  color: var(--blanco);
+  margin-bottom: 0.85rem;
+}
+
+.sintomas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.sintoma {
+  padding: 0.7rem 0.95rem;
+  background: rgb(4 7 14 / 0.6);
+  border: 1px solid var(--pista-tenue);
+  border-radius: 999px;
+  color: var(--acero);
+  font-family: var(--cuerpo);
+  font-size: var(--t-sm);
+  cursor: pointer;
+  transition: background 0.22s var(--curva), border-color 0.22s var(--curva),
+              color 0.22s var(--curva), box-shadow 0.22s var(--curva);
+}
+.sintoma:hover { border-color: var(--neon); color: var(--blanco); }
+.sintoma[aria-pressed='true'] {
+  background: linear-gradient(150deg, var(--neon), var(--neon-hondo));
+  border-color: var(--neon);
+  color: #fff;
+  box-shadow: 0 0 22px -6px rgb(11 123 255 / 0.9);
+}
+
+.lectura {
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px dashed var(--pista-tenue);
+}
+.lectura[hidden] { display: none; }
+
+.lectura__causa {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+  margin-bottom: 0.35rem;
+}
+.lectura__texto {
+  font-size: var(--t-md);
+  color: var(--blanco);
+  min-height: 1.6em;
+}
+.lectura__texto::after {
+  content: '\258C';
+  color: var(--cian);
+  animation: parpadeo 1s steps(2) infinite;
+}
+.lectura[data-listo='si'] .lectura__texto::after { content: none; }
+@keyframes parpadeo { 50% { opacity: 0; } }
+
+.lectura__datos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+.lectura__dato {
+  padding: 0.7rem 0.8rem;
+  background: rgb(4 7 14 / 0.55);
+  border: 1px solid var(--pista-tenue);
+  border-radius: var(--radio-sm);
+}
+.lectura__dato dt {
+  font-family: var(--dato);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.lectura__dato dd {
+  margin: 0.25rem 0 0;
+  font-family: var(--dato);
+  font-size: var(--t-sm);
+  font-weight: 500;
+  color: var(--cian);
+}
+
+.lectura__accion { margin-top: 1rem; }
+
+.nota {
+  margin-top: 0.75rem;
+  font-size: var(--t-xs);
+  color: var(--acero-tenue);
+  line-height: 1.55;
+}
+
+/* --- 9. Servicios: retícula desigual ------------------------------------ */
+.servicios {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.tarjeta {
+  position: relative;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, rgb(15 30 51 / 0.7), rgb(10 19 34 / 0.85));
+  border: var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  transition: border-color 0.3s var(--curva), transform 0.3s var(--curva);
+}
+.tarjeta:hover { border-color: rgb(11 123 255 / 0.55); transform: translateY(-3px); }
+.tarjeta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(34 211 245 / 0.55), transparent);
+  opacity: 0;
+  transition: opacity 0.3s var(--curva);
+}
+.tarjeta:hover::before { opacity: 1; }
+
+.tarjeta__icono {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid var(--pista);
+  border-radius: var(--radio-sm);
+  background: rgb(4 7 14 / 0.6);
+  color: var(--cian);
+}
+.tarjeta__icono svg { width: 20px; height: 20px; }
+
+.tarjeta__titulo { font-size: var(--t-lg); margin-bottom: 0.5rem; }
+.tarjeta__texto  { color: var(--acero); font-size: var(--t-sm); }
+
+
+/* Las seis tarjetas de servicio son iguales: tres por fila sobre la reja de
+   seis. Como 6 se divide en 3, 2 y 1, ninguna fila queda coja al reducir. */
+.tarjeta--servicio { grid-column: span 2; }
+
+.tarjeta--foto {
+  grid-column: span 6;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+}
+.tarjeta--foto .tarjeta__lado { padding: clamp(1.6rem, 3vw, 2.6rem); align-self: center; }
+.tarjeta--foto figure { margin: 0; position: relative; min-height: 260px; }
+.tarjeta--foto img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.tarjeta--foto figure::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--placa) 1%, transparent 40%);
+}
+
+.lista-marcada { margin-top: 1.1rem; display: grid; gap: 0.5rem; }
+.lista-marcada li {
+  display: flex;
+  gap: 0.65rem;
+  font-size: var(--t-sm);
+  color: var(--acero);
+}
+.lista-marcada li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  margin-top: 0.62em;
+  flex: none;
+  background: var(--neon);
+  box-shadow: 0 0 8px rgb(11 123 255 / 0.9);
+}
+
+/* --- 10. Componentes: los renders flotan sobre su propio resplandor ----- */
+.vitrina {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(255px, 1fr));
+  gap: 1rem;
+}
+
+.pieza {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem;
+  background: linear-gradient(170deg, rgb(15 30 51 / 0.55), rgb(4 7 14 / 0.8));
+  border: var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  transition: border-color 0.32s var(--curva), transform 0.32s var(--curva);
+}
+.pieza:hover { border-color: rgb(34 211 245 / 0.5); transform: translateY(-4px); }
+
+.pieza__marco {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  margin-bottom: 0.9rem;
+}
+/* El resplandor detrás de la pieza recortada */
+.pieza__marco::before {
+  content: '';
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(11 123 255 / 0.42), transparent 68%);
+  filter: blur(20px);
+  opacity: 0.7;
+  transition: opacity 0.35s var(--curva), transform 0.35s var(--curva);
+}
+.pieza:hover .pieza__marco::before { opacity: 1; transform: scale(1.12); }
+
+.pieza__marco img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s var(--curva);
+}
+.pieza:hover .pieza__marco img { transform: scale(1.06) translateY(-3px); }
+
+.pieza__nombre { font-size: var(--t-md); margin-bottom: 0.3rem; }
+.pieza__texto  { font-size: var(--t-sm); color: var(--acero); }
+.pieza__pie {
+  margin-top: auto;
+  padding-top: 0.9rem;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  color: var(--acero-tenue);
+  letter-spacing: 0.05em;
+}
+
+/* --- 11. Equipos a la medida -------------------------------------------- */
+.equipos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.1rem;
+}
+
+.equipo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(168deg, rgb(15 30 51 / 0.72), rgb(10 19 34 / 0.9));
+  border: var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  transition: border-color 0.3s var(--curva), transform 0.3s var(--curva);
+}
+.equipo:hover { transform: translateY(-4px); border-color: rgb(11 123 255 / 0.5); }
+
+.equipo--destacado { border-color: rgb(11 123 255 / 0.65); box-shadow: var(--brillo-neon); }
+
+.equipo__lamina { position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.equipo__lamina img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--curva); }
+.equipo:hover .equipo__lamina img { transform: scale(1.04); }
+.equipo__lamina::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, var(--placa) 2%, rgb(4 7 14 / 0.15) 55%);
+}
+
+.equipo__marca {
+  position: absolute;
+  z-index: 2;
+  top: 0.85rem;
+  left: 0.85rem;
+  padding: 0.3rem 0.7rem;
+  background: rgb(4 7 14 / 0.82);
+  border: 1px solid var(--pista);
+  border-radius: 999px;
+  font-family: var(--dato);
+  font-size: 0.66rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cian);
+  backdrop-filter: blur(6px);
+}
+.equipo--destacado .equipo__marca { color: var(--contacto); border-color: rgb(232 196 106 / 0.5); }
+
+.equipo__cuerpo { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
+.equipo__nombre { font-size: var(--t-lg); }
+.equipo__para  { margin-top: 0.4rem; color: var(--acero); font-size: var(--t-sm); }
+
+/* Con las tarjetas en fila hay que comparar renglón contra renglón: se reserva
+   el alto de la descripción más larga para que las fichas arranquen a la par.
+   La columna es más angosta entre 900 y 1240 px, así que ahí ocupa una línea más. */
+@media (min-width: 900px) {
+  .equipo__para { min-height: 8.25em; }   /* cinco líneas */
+}
+@media (min-width: 1240px) {
+  .equipo__para { min-height: 6.6em; }    /* cuatro líneas */
+}
+
+.ficha {
+  margin: 1.15rem 0;
+  display: grid;
+  gap: 0;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+}
+.ficha div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgb(20 55 95 / 0.4);
+}
+.ficha div:last-child { border-bottom: 0; }
+.ficha dt { color: var(--acero); letter-spacing: 0.1em; text-transform: uppercase; }
+.ficha dd { margin: 0; color: var(--blanco); text-align: right; }
+
+.equipo__desde {
+  margin-top: auto;
+  padding-top: 0.4rem;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  color: var(--acero-tenue);
+}
+.equipo__desde b {
+  display: block;
+  margin-top: 0.15rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--contacto);
+  letter-spacing: 0.01em;
+}
+.equipo__cuerpo .boton { margin-top: 1rem; }
+
+/* --- 12. Proceso: aquí el orden sí es información ----------------------- */
+.proceso {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+  gap: 0;
+  border: var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: rgb(10 19 34 / 0.5);
+}
+.paso {
+  position: relative;
+  padding: 1.7rem 1.5rem;
+  border-right: 1px solid rgb(20 55 95 / 0.45);
+}
+.paso:last-child { border-right: 0; }
+.paso__numero {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.2em;
+  color: var(--neon);
+  margin-bottom: 0.9rem;
+}
+/* La marca de continuidad entre pasos */
+.paso:not(:last-child) .paso__numero::after {
+  content: '';
+  display: inline-block;
+  width: 22px;
+  height: 1px;
+  margin-left: 0.6rem;
+  vertical-align: middle;
+  background: linear-gradient(90deg, var(--neon), transparent);
+}
+.paso__titulo { font-size: var(--t-md); margin-bottom: 0.45rem; }
+.paso__texto  { font-size: var(--t-sm); color: var(--acero); }
+
+/* --- 13. Franja de garantía (el único uso amplio del oro) --------------- */
+.garantia {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.6rem;
+  padding: clamp(1.9rem, 4vw, 2.8rem);
+  background: linear-gradient(150deg, rgb(232 196 106 / 0.07), rgb(10 19 34 / 0.75));
+  border: 1px solid rgb(232 196 106 / 0.28);
+  border-radius: var(--radio);
+}
+.garantia__cifra {
+  font-family: var(--display);
+  font-variation-settings: 'wdth' 118;
+  font-size: clamp(2.2rem, 4vw, 3.1rem);
+  font-weight: 900;
+  color: var(--contacto);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.garantia__pie {
+  margin-top: 0.5rem;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.garantia__nota { margin-top: 0.55rem; font-size: var(--t-sm); color: var(--acero); }
+
+/* --- 14. Cobertura ------------------------------------------------------ */
+.cobertura {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(1.6rem, 4vw, 3rem);
+  align-items: start;
+}
+.zonas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.zonas li {
+  padding: 0.45rem 0.85rem;
+  background: rgb(15 30 51 / 0.6);
+  border: 1px solid var(--pista-tenue);
+  border-radius: 999px;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  color: var(--acero);
+  letter-spacing: 0.04em;
+}
+
+/* --- 15. Preguntas ------------------------------------------------------ */
+.preguntas { display: grid; gap: 0.6rem; max-width: 78ch; }
+.pregunta {
+  background: rgb(10 19 34 / 0.6);
+  border: var(--borde);
+  border-radius: var(--radio-sm);
+  overflow: hidden;
+  transition: border-color 0.25s var(--curva);
+}
+.pregunta[open] { border-color: rgb(11 123 255 / 0.5); }
+.pregunta summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: var(--t-sm);
+  list-style: none;
+}
+.pregunta summary::-webkit-details-marker { display: none; }
+.pregunta summary::after {
+  content: '+';
+  font-family: var(--dato);
+  font-size: 1.15rem;
+  color: var(--cian);
+  flex: none;
+  transition: transform 0.25s var(--curva);
+}
+.pregunta[open] summary::after { transform: rotate(45deg); }
+.pregunta p {
+  padding: 0 1.2rem 1.2rem;
+  color: var(--acero);
+  font-size: var(--t-sm);
+  max-width: 68ch;
+}
+
+/* --- 16. Llamado final -------------------------------------------------- */
+.remate {
+  position: relative;
+  overflow: hidden;
+  border: var(--borde);
+  border-radius: var(--radio);
+  padding: clamp(2.2rem, 5vw, 3.8rem);
+  background: var(--placa);
+  text-align: center;
+}
+.remate__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.42;
+}
+.remate::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 100% at 50% 100%, rgb(11 123 255 / 0.28), rgb(4 7 14 / 0.9) 72%);
+}
+.remate > * { position: relative; z-index: 2; }
+.remate__titulo { font-size: var(--t-xl); }
+.remate p { margin: 1rem auto 1.7rem; max-width: 52ch; color: var(--acero); }
+.remate .acciones { justify-content: center; }
+
+/* --- 17. Formulario ----------------------------------------------------- */
+.formulario {
+  display: grid;
+  gap: 1rem;
+  padding: clamp(1.5rem, 3vw, 2.2rem);
+  background: linear-gradient(165deg, rgb(15 30 51 / 0.7), rgb(10 19 34 / 0.9));
+  border: var(--borde);
+  border-radius: var(--radio);
+}
+.campo { display: grid; gap: 0.4rem; }
+.campo label {
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  background: rgb(4 7 14 / 0.7);
+  border: 1px solid var(--pista-tenue);
+  border-radius: var(--radio-sm);
+  color: var(--blanco);
+  font-family: var(--cuerpo);
+  font-size: var(--t-sm);
+  transition: border-color 0.2s var(--curva), box-shadow 0.2s var(--curva);
+}
+.campo input::placeholder, .campo textarea::placeholder { color: #4b5b71; }
+.campo input:focus,
+.campo select:focus,
+.campo textarea:focus {
+  outline: none;
+  border-color: var(--neon);
+  box-shadow: 0 0 0 3px rgb(11 123 255 / 0.18);
+}
+.campo textarea { resize: vertical; min-height: 118px; }
+.campo select { appearance: none; cursor: pointer; }
+.pareja { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; }
+
+/* --- 18. Datos de contacto ---------------------------------------------- */
+.contactos { display: grid; gap: 0.9rem; }
+.contacto-item {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  background: rgb(10 19 34 / 0.55);
+  border: var(--borde);
+  border-radius: var(--radio-sm);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.25s var(--curva), transform 0.25s var(--curva);
+}
+a.contacto-item:hover { border-color: rgb(34 211 245 / 0.55); transform: translateX(3px); color: inherit; }
+.contacto-item svg { width: 19px; height: 19px; color: var(--cian); flex: none; margin-top: 3px; }
+.contacto-item dt {
+  font-family: var(--dato);
+  font-size: 0.66rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.contacto-item dd { margin: 0.2rem 0 0; font-size: var(--t-sm); }
+
+/* --- 19. Pie ------------------------------------------------------------ */
+.pie {
+  position: relative;
+  z-index: 1;
+  margin-top: var(--aire);
+  overflow: hidden;
+  border-top: 1px solid var(--pista-tenue);
+}
+.pie__fondo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.5;
+}
+.pie::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(to bottom, var(--negro) 3%, rgb(4 7 14 / 0.82));
+}
+.pie__interior { position: relative; z-index: 2; padding-block: clamp(2.6rem, 5vw, 4rem) 5.5rem; }
+
+.pie__reja {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) repeat(auto-fit, minmax(min(150px, 100%), 1fr));
+  gap: 2.2rem;
+}
+.pie__texto { margin-top: 1rem; color: var(--acero); font-size: var(--t-sm); max-width: 38ch; }
+.pie h3 {
+  font-family: var(--dato);
+  font-variation-settings: normal;
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+  margin-bottom: 1rem;
+}
+.pie__lista { display: grid; gap: 0.15rem; }
+.pie__lista a,
+.pie__lista span {
+  display: block;
+  color: var(--acero);
+  text-decoration: none;
+  font-size: var(--t-sm);
+}
+/* Los enlaces del pie llevan teléfono y WhatsApp: deben ser cómodos de tocar */
+.pie__lista a { padding-block: 0.6rem; }
+.pie__lista a:hover { color: var(--cian); }
+
+.pie__base {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid rgb(20 55 95 / 0.5);
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  color: var(--acero-tenue);
+}
+
+/* --- 20. Botón flotante de WhatsApp ------------------------------------- */
+.flotante {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.8rem);
+  bottom: clamp(1rem, 3vw, 1.8rem);
+  z-index: 90;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.8rem 1.15rem;
+  background: #1faa54;
+  color: #fff;
+  border-radius: 999px;
+  font-size: var(--t-sm);
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 12px 34px -8px rgb(31 170 84 / 0.75);
+  transition: transform 0.25s var(--curva), box-shadow 0.25s var(--curva);
+}
+.flotante:hover { color: #fff; transform: translateY(-3px) scale(1.02); }
+.flotante svg { width: 21px; height: 21px; flex: none; }
+.flotante span { display: none; }
+
+/* --- 21. Aparición al desplazar ----------------------------------------- */
+[data-aparece] {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s var(--curva), transform 0.7s var(--curva);
+}
+[data-aparece][data-visible] { opacity: 1; transform: none; }
+
+/* --- 23. Páginas internas ----------------------------------------------- */
+.encabezado-pagina { padding-block: clamp(1.6rem, 3vw, 2.4rem) 0; }
+/* El h1 debe pesar más que los títulos de sección que vienen después */
+.encabezado-pagina h1.titulo-bloque {
+  font-size: clamp(2.3rem, 1.4rem + 2.9vw, 3.7rem);
+  font-variation-settings: 'wdth' 118;
+  font-weight: 900;
+}
+/* El primer bloque tras el encabezado no necesita el aire completo */
+.encabezado-pagina + .bloque { padding-top: calc(var(--aire) * 0.55); }
+
+.migas { margin-bottom: 1.6rem; }
+.migas ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+}
+.migas li + li::before {
+  content: '/';
+  margin-right: 0.5rem;
+  color: var(--pista);
+}
+.migas a { color: var(--acero-tenue); text-decoration: none; display: inline-block; padding-block: 0.5rem; }
+.migas a:hover { color: var(--cian); }
+
+.encabezado-pagina__reja {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: clamp(2rem, 4vw, 3.4rem);
+  align-items: center;
+}
+.encabezado-pagina__lamina {
+  position: relative;
+  margin: 0;
+  border-radius: var(--radio);
+  overflow: hidden;
+  border: var(--borde);
+  background: radial-gradient(circle at 50% 50%, rgb(11 123 255 / 0.16), transparent 70%);
+}
+.encabezado-pagina__lamina img { width: 100%; }
+
+/* Tabla de tarifas: el precio es un dato, va en la fuente de datos */
+.tarifas {
+  width: 100%;
+  border-collapse: collapse;
+  border: var(--borde);
+  border-radius: var(--radio);
+  overflow: hidden;
+  background: rgb(10 19 34 / 0.5);
+}
+.tarifas thead th {
+  padding: 0.85rem 1.1rem;
+  background: rgb(4 7 14 / 0.6);
+  border-bottom: 1px solid var(--pista-tenue);
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--acero-tenue);
+  text-align: left;
+}
+.tarifas thead th:not(:first-child) { text-align: right; white-space: nowrap; }
+
+.tarifas tbody tr { border-bottom: 1px solid rgb(20 55 95 / 0.35); }
+.tarifas tbody tr:last-child { border-bottom: 0; }
+.tarifas tbody tr:hover { background: rgb(15 30 51 / 0.5); }
+
+.tarifas tbody th {
+  padding: 1rem 1.1rem;
+  text-align: left;
+  font-family: var(--cuerpo);
+  font-size: var(--t-base);
+  font-weight: 600;
+  color: var(--blanco);
+}
+.tarifas tbody th span {
+  display: block;
+  margin-top: 0.25rem;
+  font-weight: 400;
+  font-size: var(--t-sm);
+  color: var(--acero);
+  max-width: 56ch;
+}
+.tarifas tbody td {
+  padding: 1rem 1.1rem;
+  text-align: right;
+  vertical-align: top;
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  white-space: nowrap;
+  color: var(--acero);
+}
+
+.lamina-suelta {
+  position: relative;
+  margin: 0;
+  padding: 1.2rem;
+  border: var(--borde);
+  border-radius: var(--radio);
+  background:
+    radial-gradient(circle at 50% 42%, rgb(11 123 255 / 0.18), transparent 68%),
+    rgb(10 19 34 / 0.5);
+}
+.lamina-suelta img { width: 100%; }
+.lamina-suelta figcaption {
+  margin-top: 0.9rem;
+  font-size: var(--t-sm);
+  color: var(--acero);
+}
+
+.aviso-domicilio {
+  margin-top: 1.6rem;
+  padding: 1.3rem;
+  border: 1px solid rgb(232 196 106 / 0.28);
+  border-radius: var(--radio);
+  background: linear-gradient(150deg, rgb(232 196 106 / 0.06), rgb(10 19 34 / 0.7));
+}
+
+@media (max-width: 900px) {
+  .encabezado-pagina__reja { grid-template-columns: 1fr; }
+  .encabezado-pagina__lamina { order: -1; }
+}
+
+@media (max-width: 680px) {
+  /* La tabla se reordena en fichas apiladas para que quepa en el teléfono */
+  .tarifas, .tarifas tbody, .tarifas tr, .tarifas th, .tarifas td { display: block; width: 100%; }
+  .tarifas thead { display: none; }
+  .tarifas tbody tr { padding: 0.4rem 0 0.9rem; }
+  .tarifas tbody th { padding-bottom: 0.5rem; }
+  .tarifas tbody td { padding: 0.15rem 1.1rem; text-align: left; }
+  .tarifas tbody td::before {
+    content: 'Tiempo: ';
+    color: var(--acero-tenue);
+  }
+}
+
+/* --- 24. Soporte remoto y página 404 ------------------------------------ */
+
+/* Aviso dentro del diagnóstico cuando el caso se resuelve a distancia */
+.lectura__remoto {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.9rem;
+  padding: 0.7rem 0.85rem;
+  border: 1px solid rgb(34 211 245 / 0.32);
+  border-radius: var(--radio-sm);
+  background: rgb(34 211 245 / 0.06);
+  font-size: var(--t-sm);
+  color: var(--acero);
+}
+.lectura__remoto[hidden] { display: none; }
+.lectura__remoto span {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: var(--cian);
+  color: #04070e;
+  font-family: var(--dato);
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  flex: none;
+}
+
+/* La tarjeta de remoto se distingue del resto de servicios por su borde cian */
+.tarjeta--remoto { border-color: rgb(34 211 245 / 0.34); }
+.tarjeta--remoto:hover { border-color: rgb(34 211 245 / 0.6); }
+
+/* Dos columnas enfrentadas: lo que sí y lo que no */
+.dos-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.panel {
+  padding: clamp(1.3rem, 3vw, 1.9rem);
+  border: var(--borde);
+  border-radius: var(--radio);
+  background: linear-gradient(160deg, rgb(15 30 51 / 0.6), rgb(10 19 34 / 0.85));
+}
+.panel__titulo {
+  margin-bottom: 1.1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--pista-tenue);
+  font-family: var(--dato);
+  font-size: var(--t-xs);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.panel--si { border-color: rgb(34 211 245 / 0.34); }
+.panel--si .panel__titulo { color: var(--cian); }
+.panel--no .panel__titulo { color: var(--acero-tenue); }
+.panel .lista-marcada { margin-top: 0; }
+
+/* Lista sin viñeta luminosa: aquí la marca sería una promesa que no hacemos */
+.lista-plana { display: grid; gap: 0.5rem; }
+.lista-plana li {
+  display: flex;
+  gap: 0.65rem;
+  font-size: var(--t-sm);
+  color: var(--acero);
+}
+.lista-plana li::before {
+  content: '';
+  width: 6px;
+  height: 1px;
+  margin-top: 0.85em;
+  flex: none;
+  background: var(--acero-tenue);
+}
+.panel .nota { margin-top: 1.2rem; }
+
+}
+
+/* --- 22. Adaptación ----------------------------------------------------- */
+@media (min-width: 1380px) {
+  .flotante span { display: inline; }
+}
+
+@media (max-width: 980px) {
+  .portada__banda { min-height: clamp(400px, 62vh, 520px); }
+  .portada__titulo { max-width: 22ch; }
+  .tarjeta--servicio { grid-column: span 3; }   /* dos por fila */
+  .tarjeta--foto { grid-template-columns: 1fr; }
+  .tarjeta--foto figure { min-height: 210px; order: -1; }
+  .tarjeta--foto figure::after {
+    background: linear-gradient(to top, var(--placa) 2%, transparent 55%);
+  }
+  .paso { border-right: 0; border-bottom: 1px solid rgb(20 55 95 / 0.45); }
+  .paso:last-child { border-bottom: 0; }
+}
+
+@media (max-width: 1040px) {
+  .boton-menu { display: flex; }
+  .menu {
+    position: fixed;
+    inset: 76px 0 auto;
+    max-height: calc(100dvh - 76px);
+    overflow-y: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    margin: 0;
+    padding: 0.5rem var(--canal) 1.4rem;
+    background: rgb(4 7 14 / 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--pista-tenue);
+    transform: translateY(-8px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s var(--curva), transform 0.25s var(--curva), visibility 0.25s;
+  }
+  .menu[data-abierto='si'] { opacity: 1; visibility: visible; transform: none; }
+  .menu a { padding: 0.95rem 0; border-bottom: 1px solid rgb(20 55 95 / 0.35); font-size: var(--t-md); }
+  .menu a::after { display: none; }
+  .menu .boton { margin-top: 1rem; }
+}
+
+@media (max-width: 700px) {
+  /* En vertical el sujeto queda arriba y el texto se apoya en la parte baja */
+  .portada__banda {
+    align-items: flex-end;
+    min-height: clamp(520px, 78vh, 640px);
+    padding-block: 8rem clamp(4.5rem, 14vw, 6.5rem);
+  }
+  .portada__banda img { object-position: 58% 22%; }
+  .portada__velo {
+    background: linear-gradient(to bottom,
+      rgb(4 7 14 / 0.50) 0%,
+      rgb(4 7 14 / 0.28) 8%,
+      rgb(4 7 14 / 0.88) 20%,
+      rgb(4 7 14 / 0.93) 70%,
+      var(--negro) 100%);
+  }
+  .portada__titulo { max-width: none; }
+}
+
+@media (max-width: 620px) {
+  .pie__reja { grid-template-columns: 1fr; gap: 1.8rem; }
+  .tarjeta--servicio { grid-column: span 6; }   /* una por fila */
+  .lectura__datos { grid-template-columns: 1fr; }
+  .vitrina { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+  .acciones .boton { flex: 1 1 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  [data-aparece] { opacity: 1; transform: none; }
+  .lectura__texto::after { content: none; }
+}
+
+@media print {
+  body::before, .flotante, .barra, .remate__fondo, .pie__fondo { display: none; }
+  body { background: #fff; color: #000; }
+}
