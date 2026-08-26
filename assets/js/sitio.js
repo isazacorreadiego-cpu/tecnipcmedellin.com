@@ -102,7 +102,30 @@ function enlaceWhatsApp(mensaje) {
 }
 
 /* --------------------------------------------------------------------------
-   4. Datos del negocio en la página
+   4. Dirección limpia en la barra del navegador
+
+   Los enlaces al inicio apuntan a "index.html" y no a "/", a propósito: así el
+   sitio se puede abrir con doble clic desde el disco, donde una barra suelta
+   apuntaría a la raíz del computador y no a la portada.
+
+   El costo es que al publicarlo la barra muestra /index.html. GitHub Pages no
+   permite redirigir del lado del servidor, así que se limpia aquí: se reescribe
+   la dirección sin recargar la página. Solo en http y https; en file:// no
+   aplica y además fallaría.
+   -------------------------------------------------------------------------- */
+function limpiarDireccion() {
+  if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
+  if (!/\/index\.html$/.test(location.pathname)) return;
+  try {
+    var limpia = location.pathname.replace(/index\.html$/, '') + location.search + location.hash;
+    history.replaceState(null, '', limpia);
+  } catch (e) {
+    /* Si el navegador no lo permite, no pasa nada: la página funciona igual. */
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Datos del negocio en la página
    Cualquier elemento con data-negocio="campo" recibe el valor correspondiente.
    Si además es un enlace, se le arma el href adecuado.
    -------------------------------------------------------------------------- */
@@ -131,7 +154,7 @@ function pintarDatosNegocio() {
 }
 
 /* --------------------------------------------------------------------------
-   5. Barra superior
+   6. Barra superior
    -------------------------------------------------------------------------- */
 function activarBarra() {
   const barra = uno('.barra');
@@ -168,7 +191,7 @@ function activarBarra() {
 }
 
 /* --------------------------------------------------------------------------
-   6. Panel de diagnóstico
+   7. Panel de diagnóstico
    -------------------------------------------------------------------------- */
 function activarDiagnostico() {
   const panel = uno('.diagnostico');
@@ -230,7 +253,7 @@ function activarDiagnostico() {
 }
 
 /* --------------------------------------------------------------------------
-   7. Aparición al desplazar
+   8. Aparición al desplazar
    -------------------------------------------------------------------------- */
 function activarApariciones() {
   const piezas = todos('[data-aparece]');
@@ -254,7 +277,7 @@ function activarApariciones() {
 }
 
 /* --------------------------------------------------------------------------
-   8. Formulario de contacto
+   9. Formulario de contacto
    No hay servidor: el formulario arma el mensaje y lo abre en WhatsApp.
    -------------------------------------------------------------------------- */
 function activarFormulario() {
@@ -287,9 +310,10 @@ function activarFormulario() {
 }
 
 /* --------------------------------------------------------------------------
-   9. Arranque
+   10. Arranque
    -------------------------------------------------------------------------- */
 function iniciar() {
+  limpiarDireccion();
   pintarDatosNegocio();
   activarBarra();
   activarDiagnostico();
