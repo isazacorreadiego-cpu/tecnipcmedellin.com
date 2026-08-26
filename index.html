@@ -173,6 +173,7 @@
         Primero encontramos<br>la falla.
         <em>Después la arreglamos.</em>
       </h1>
+      <h2 class="portada__sub">Servicio técnico de computadores y portátiles en Medellín</h2>
       <p class="portada__entrada">
         Nadie debería pagar por un repuesto que no necesita. Revisamos su equipo,
         le explicamos qué falló y usted decide con la cotización en la mano.
@@ -212,33 +213,147 @@
             </p>
           </div>
 
-          <div class="lectura" aria-live="polite" hidden>
+          <div class="lecturas" aria-live="polite">
+          <div class="lectura" data-lectura-de="no-enciende" hidden>
             <p class="lectura__causa">Lo que solemos encontrar</p>
-            <p class="lectura__texto"></p>
+            <p class="lectura__texto">Casi siempre es la fuente de poder o el botón de encendido. En portátiles, el cargador o el conector de carga. Si enciende y se apaga de una, revisamos la placa.</p>
 
             <dl class="lectura__datos">
-              <div class="lectura__dato">
-                <dt>Servicio</dt>
-                <dd data-lectura="servicio"></dd>
-              </div>
-              <div class="lectura__dato">
-                <dt>Tiempo</dt>
-                <dd data-lectura="tiempo"></dd>
-              </div>
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Revisión de energía</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>1 – 3 días</dd></div>
             </dl>
 
-            <p class="lectura__remoto" hidden>
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20mi%20equipo%20no%20enciende.%20Quisiera%20saber%20por%20la%20revisi%C3%B3n%20de%20energ%C3%ADa." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="lento" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Disco mecánico saturado o memoria insuficiente. Cambiar a SSD es el salto que más se nota: el equipo arranca en segundos.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Migración a SSD + optimización</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>Mismo día</dd></div>
+            </dl>
+
+            <p class="lectura__remoto">
               <span>Remoto</span>
               Este caso normalmente se resuelve por conexión remota, sin mover el equipo.
               <a href="soporte-remoto.html">Ver cómo funciona</a>
             </p>
 
             <p class="lectura__accion">
-              <a class="boton boton--principal boton--ancho" href="#" target="_blank" rel="noopener">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20mi%20equipo%20va%20muy%20lento.%20Quisiera%20saber%20por%20el%20cambio%20a%20disco%20SSD." target="_blank" rel="noopener">
                 <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
                 Consultar este caso por WhatsApp
               </a>
             </p>
+          </div>
+          <div class="lectura" data-lectura-de="calienta" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Polvo acumulado en el disipador y pasta térmica seca. El equipo baja su rendimiento solo para no quemarse.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Mantenimiento y cambio de pasta térmica</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>4 – 8 horas</dd></div>
+            </dl>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20mi%20equipo%20se%20calienta%20y%20suena%20mucho.%20Quisiera%20saber%20por%20el%20mantenimiento." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="pantalla" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Memoria RAM con fallas, controladores en conflicto o disco con sectores dañados. Lo confirmamos con pruebas antes de cambiar nada.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Diagnóstico de estabilidad</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>1 – 2 días</dd></div>
+            </dl>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20mi%20equipo%20se%20reinicia%20y%20me%20saca%20pantalla%20azul.%20Quisiera%20saber%20por%20el%20diagn%C3%B3stico." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="virus" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Programas no deseados en el navegador y en el arranque de Windows. Se limpia sin perder los archivos.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Limpieza y protección</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>Mismo día</dd></div>
+            </dl>
+
+            <p class="lectura__remoto">
+              <span>Remoto</span>
+              Este caso normalmente se resuelve por conexión remota, sin mover el equipo.
+              <a href="soporte-remoto.html">Ver cómo funciona</a>
+            </p>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20mi%20equipo%20tiene%20virus%20y%20publicidad.%20Quisiera%20saber%20por%20la%20limpieza." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="datos" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Formateo accidental, disco que no monta o borrado por error. Entre menos se use el disco, más se puede recuperar.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Recuperación de datos</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>2 – 5 días</dd></div>
+            </dl>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20perd%C3%AD%20archivos%20de%20mi%20equipo.%20Quisiera%20saber%20por%20la%20recuperaci%C3%B3n%20de%20datos." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="liquido" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Urgente: no lo encienda. La corrosión avanza por horas. Se desarma, se lava la placa y se evalúa qué quedó vivo.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Limpieza de placa por líquido</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>2 – 4 días</dd></div>
+            </dl>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20se%20me%20reg%C3%B3%20l%C3%ADquido%20en%20el%20equipo%20y%20no%20lo%20he%20encendido.%20%C2%BFQu%C3%A9%20hago%3F" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
+          <div class="lectura" data-lectura-de="armar" hidden>
+            <p class="lectura__causa">Lo que solemos encontrar</p>
+            <p class="lectura__texto">Partimos del uso real y del presupuesto, no de una lista copiada. Le decimos en qué vale la pena gastar y en qué no.</p>
+
+            <dl class="lectura__datos">
+              <div class="lectura__dato"><dt>Servicio</dt><dd>Asesoría y ensamble a la medida</dd></div>
+              <div class="lectura__dato"><dt>Tiempo</dt><dd>3 – 7 días</dd></div>
+            </dl>
+
+            <p class="lectura__accion">
+              <a class="boton boton--principal boton--ancho" href="https://wa.me/573189490552?text=Hola%2C%20quiero%20armar%20un%20PC.%20Lo%20voy%20a%20usar%20para%20____%20y%20mi%20presupuesto%20es%20de%20____." target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.7-.9-2-1-.3-.1-.5-.2-.7.1-.2.3-.7 1-.9 1.2-.2.2-.3.2-.6.1-1.7-.9-2.9-1.6-4-3.6-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5 0-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.5.7.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3.1.8.8-3-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+                Consultar este caso por WhatsApp
+              </a>
+            </p>
+          </div>
           </div>
         </div>
       </div>
@@ -265,7 +380,9 @@
           <h3 class="tarjeta__titulo">Reparación a nivel de placa</h3>
           <p class="tarjeta__texto">
             Microscopio, estación de soldadura y fuente de laboratorio. Cambiamos el componente
-            que falló en lugar de venderle una tarjeta nueva completa.
+            que falló en lugar de venderle una tarjeta nueva completa. Es lo que hacemos
+            cuando <a href="computador-no-enciende.html">el equipo no enciende</a> o cuando
+            <a href="liquido-en-el-portatil.html">se regó líquido</a>.
           </p>
           <ul class="lista-marcada">
             <li>Cortos, pistas rotas y daño por líquido</li>
@@ -308,6 +425,7 @@
         <p class="tarjeta__texto">
           El salto que más se nota en un equipo viejo. Migramos Windows y sus programas
           tal como están: prende en segundos y usted no pierde nada.
+          <a href="computador-lento.html">¿Por qué se pone lento un computador?</a>
         </p>
       </article>
 
@@ -597,7 +715,12 @@
         <li>Castilla</li><li>Envigado</li><li>Sabaneta</li><li>Itagüí</li>
         <li>Bello</li><li>La Estrella</li><li>Copacabana</li>
       </ul>
-      <p class="nota">¿No ve su barrio? Escríbanos igual: casi siempre llegamos.</p>
+      <p class="nota">
+        ¿No ve su barrio? Escríbanos igual: casi siempre llegamos. Vea cómo atendemos
+        <a href="reparacion-computadores-envigado.html">Envigado</a>,
+        <a href="reparacion-computadores-bello.html">Bello</a> e
+        <a href="reparacion-computadores-itagui.html">Itagüí</a>.
+      </p>
     </div>
   </div>
 </section>
@@ -684,22 +807,22 @@
       </div>
 
       <div>
-        <h3>Servicios</h3>
+        <h3>Problemas frecuentes</h3>
         <ul class="pie__lista">
-          <li><a href="servicios.html">Reparación de placa</a></li>
-          <li><a href="servicios.html">Mantenimiento</a></li>
-          <li><a href="servicios.html">Cambio a SSD</a></li>
-          <li><a href="servicios.html">Recuperación de datos</a></li>
+          <li><a href="computador-no-enciende.html">El computador no enciende</a></li>
+          <li><a href="computador-lento.html">El computador está lento</a></li>
+          <li><a href="liquido-en-el-portatil.html">Se regó líquido</a></li>
+          <li><a href="servicios.html">Todos los servicios</a></li>
         </ul>
       </div>
 
       <div>
-        <h3>Sitio</h3>
+        <h3>Dónde atendemos</h3>
         <ul class="pie__lista">
-          <li><a href="armamos-tu-pc.html">Armamos tu PC</a></li>
-          <li><a href="componentes.html">Componentes</a></li>
-          <li><a href="contacto.html">Contacto</a></li>
-          <li><a href="#preguntas">Preguntas frecuentes</a></li>
+          <li><a href="reparacion-computadores-envigado.html">Envigado</a></li>
+          <li><a href="reparacion-computadores-bello.html">Bello</a></li>
+          <li><a href="reparacion-computadores-itagui.html">Itagüí</a></li>
+          <li><a href="soporte-remoto.html">Resto de Colombia (remoto)</a></li>
         </ul>
       </div>
 

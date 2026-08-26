@@ -21,72 +21,6 @@ const NEGOCIO = {
   sitio:     'https://tecnipcmedellin.com'
 };
 
-/* --------------------------------------------------------------------------
-   2. TABLA DE DIAGNÓSTICO
-   Cada síntoma tiene la causa que más se repite en el banco de trabajo,
-   el servicio que la resuelve y el tiempo típico. El valor se cotiza aparte,
-   después de ver el equipo.
-   -------------------------------------------------------------------------- */
-const SINTOMAS = {
-  'no-enciende': {
-    mensaje: 'Hola, mi equipo no enciende. Quisiera saber por la revisión de energía.',
-    etiqueta: 'No enciende',
-    causa: 'Casi siempre es la fuente de poder o el botón de encendido. En portátiles, el cargador o el conector de carga. Si enciende y se apaga de una, revisamos la placa.',
-    servicio: 'Revisión de energía',
-    tiempo: '1 – 3 días'
-  },
-  'lento': {
-    remoto: true,
-    mensaje: 'Hola, mi equipo va muy lento. Quisiera saber por el cambio a disco SSD.',
-    etiqueta: 'Va muy lento',
-    causa: 'Disco mecánico saturado o memoria insuficiente. Cambiar a SSD es el salto que más se nota: el equipo arranca en segundos.',
-    servicio: 'Migración a SSD + optimización',
-    tiempo: 'Mismo día'
-  },
-  'calienta': {
-    mensaje: 'Hola, mi equipo se calienta y suena mucho. Quisiera saber por el mantenimiento.',
-    etiqueta: 'Se calienta o suena mucho',
-    causa: 'Polvo acumulado en el disipador y pasta térmica seca. El equipo baja su rendimiento solo para no quemarse.',
-    servicio: 'Mantenimiento y cambio de pasta térmica',
-    tiempo: '4 – 8 horas'
-  },
-  'pantalla': {
-    mensaje: 'Hola, mi equipo se reinicia y me saca pantalla azul. Quisiera saber por el diagnóstico.',
-    etiqueta: 'Pantalla azul o se reinicia',
-    causa: 'Memoria RAM con fallas, controladores en conflicto o disco con sectores dañados. Lo confirmamos con pruebas antes de cambiar nada.',
-    servicio: 'Diagnóstico de estabilidad',
-    tiempo: '1 – 2 días'
-  },
-  'virus': {
-    remoto: true,
-    mensaje: 'Hola, mi equipo tiene virus y publicidad. Quisiera saber por la limpieza.',
-    etiqueta: 'Virus o publicidad',
-    causa: 'Programas no deseados en el navegador y en el arranque de Windows. Se limpia sin perder los archivos.',
-    servicio: 'Limpieza y protección',
-    tiempo: 'Mismo día'
-  },
-  'datos': {
-    mensaje: 'Hola, perdí archivos de mi equipo. Quisiera saber por la recuperación de datos.',
-    etiqueta: 'Perdí mis archivos',
-    causa: 'Formateo accidental, disco que no monta o borrado por error. Entre menos se use el disco, más se puede recuperar.',
-    servicio: 'Recuperación de datos',
-    tiempo: '2 – 5 días'
-  },
-  'liquido': {
-    mensaje: 'Hola, se me regó líquido en el equipo y no lo he encendido. ¿Qué hago?',
-    etiqueta: 'Se me regó líquido',
-    causa: 'Urgente: no lo encienda. La corrosión avanza por horas. Se desarma, se lava la placa y se evalúa qué quedó vivo.',
-    servicio: 'Limpieza de placa por líquido',
-    tiempo: '2 – 4 días'
-  },
-  'armar': {
-    mensaje: 'Hola, quiero armar un PC. Lo voy a usar para ____ y mi presupuesto es de ____.',
-    etiqueta: 'Quiero armar un PC',
-    causa: 'Partimos del uso real y del presupuesto, no de una lista copiada. Le decimos en qué vale la pena gastar y en qué no.',
-    servicio: 'Asesoría y ensamble a la medida',
-    tiempo: '3 – 7 días'
-  }
-};
 
 /* --------------------------------------------------------------------------
    3. Utilidades
@@ -209,57 +143,22 @@ function activarDiagnostico() {
   const panel = uno('.diagnostico');
   if (!panel) return;
 
-  const botones = todos('.sintoma', panel);
-  const lectura = uno('.lectura', panel);
-  const texto   = uno('.lectura__texto', panel);
-  const servicio = uno('[data-lectura="servicio"]', panel);
-  const tiempo   = uno('[data-lectura="tiempo"]', panel);
-  const accion   = uno('.lectura__accion a', panel);
-  const avisoRemoto = uno('.lectura__remoto', panel);
+  const botones  = todos('.sintoma', panel);
+  const lecturas = todos('.lectura', panel);
 
-  let escribiendo = null;
-
-  /** Escribe la causa carácter por carácter, como una lectura de consola. */
-  function escribir(frase) {
-    clearInterval(escribiendo);
-    lectura.dataset.listo = 'no';
-
-    if (menosMovimiento) {
-      texto.textContent = frase;
-      lectura.dataset.listo = 'si';
-      return;
-    }
-
-    texto.textContent = '';
-    let i = 0;
-    escribiendo = setInterval(() => {
-      texto.textContent = frase.slice(0, ++i);
-      if (i >= frase.length) {
-        clearInterval(escribiendo);
-        lectura.dataset.listo = 'si';
-      }
-    }, 12);
-  }
-
+  /* El texto de cada síntoma está escrito en el HTML, no aquí: así lo leen los
+     buscadores y sigue estando si el visitante no ejecuta JavaScript. Este
+     código solo decide cuál se ve. */
   function elegir(clave, boton) {
-    const dato = SINTOMAS[clave];
-    if (!dato) return;
-
     botones.forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
-
-    lectura.hidden = false;
-    if (avisoRemoto) avisoRemoto.hidden = !dato.remoto;
-    servicio.textContent = dato.servicio;
-    tiempo.textContent   = dato.tiempo;
-    accion.href = enlaceWhatsApp(dato.mensaje);
-    escribir(dato.causa);
+    lecturas.forEach((l) => { l.hidden = l.dataset.lecturaDe !== clave; });
   }
 
   botones.forEach((boton) => {
     boton.addEventListener('click', () => elegir(boton.dataset.sintoma, boton));
   });
 
-  // Se abre con el síntoma más común para que el panel nunca se vea vacío.
+  /* Arranca con el caso más común para que el panel nunca se vea vacío. */
   const inicial = botones.find((b) => b.dataset.sintoma === 'lento') || botones[0];
   if (inicial) elegir(inicial.dataset.sintoma, inicial);
 }

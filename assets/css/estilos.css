@@ -332,6 +332,23 @@ a:hover { color: var(--blanco); }
 
 .acciones { display: flex; flex-wrap: wrap; gap: 0.8rem; }
 
+/* Subtítulo bajo el titular: aporta la señal de qué y dónde sin robarle
+   protagonismo al H1, que es el que carga la voz de la marca. */
+.portada__sub,
+.subtitulo-pagina {
+  font-family: var(--cuerpo);
+  font-variation-settings: normal;
+  font-size: var(--t-md);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--acero);
+  margin-top: 0.9rem;
+  max-width: 46ch;
+}
+.portada__sub { text-shadow: 0 1px 14px rgb(4 7 14 / 0.9); }
+.subtitulo-pagina { max-width: 58ch; }
+
 /* --- 6. Portada: banda de cabecera a todo el ancho ---------------------- */
 /* La imagen de marca tiene el sujeto a la derecha y la zona oscura a la
    izquierda. Se usa a sangre completa y el titular se monta sobre esa zona,
@@ -511,7 +528,10 @@ a:hover { color: var(--blanco); }
   padding-top: 1.15rem;
   border-top: 1px dashed var(--pista-tenue);
 }
+/* Los ocho bloques están en el HTML para que los lean los buscadores; solo se
+   muestra el del síntoma elegido. */
 .lectura[hidden] { display: none; }
+.lecturas { display: contents; }
 
 .lectura__causa {
   font-family: var(--dato);
