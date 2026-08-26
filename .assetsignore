@@ -1,0 +1,18 @@
+# Archivos que NO deben servirse públicamente.
+# Sintaxis igual a .gitignore. Lo lee Cloudflare Workers Static Assets.
+
+# El repositorio git. Sin esto queda expuesto todo el historial en /.git/
+.git/
+.gitignore
+.assetsignore
+
+# Configuración de despliegue
+wrangler.toml
+
+# Archivos propios de GitHub Pages, sin función aquí
+CNAME
+.nojekyll
+
+# Documentación interna
+README.md
+LEEME.md
