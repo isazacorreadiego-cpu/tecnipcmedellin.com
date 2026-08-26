@@ -108,17 +108,29 @@ function enlaceWhatsApp(mensaje) {
    sitio se puede abrir con doble clic desde el disco, donde una barra suelta
    apuntaría a la raíz del computador y no a la portada.
 
-   El costo es que al publicarlo la barra muestra /index.html. GitHub Pages no
-   permite redirigir del lado del servidor, así que se limpia aquí: se reescribe
-   la dirección sin recargar la página. Solo en http y https; en file:// no
-   aplica y además fallaría.
+   El costo es que al publicarlo la barra muestra el nombre del archivo. GitHub
+   Pages no permite redirigir del lado del servidor, así que se limpia aquí: se
+   reescribe la dirección sin recargar la página. Solo en http y https; en
+   file:// no aplica y además fallaría.
+
+   GitHub Pages sirve las dos formas (/servicios y /servicios.html devuelven lo
+   mismo), así que ningún enlace se rompe.
    -------------------------------------------------------------------------- */
 function limpiarDireccion() {
   if (location.protocol !== 'http:' && location.protocol !== 'https:') return;
-  if (!/\/index\.html$/.test(location.pathname)) return;
+
+  var ruta = location.pathname;
+  var limpia;
+  if (/\/index\.html$/.test(ruta)) {
+    limpia = ruta.replace(/index\.html$/, '');   // /index.html -> /
+  } else if (/\.html$/.test(ruta)) {
+    limpia = ruta.replace(/\.html$/, '');        // /servicios.html -> /servicios
+  } else {
+    return;
+  }
+
   try {
-    var limpia = location.pathname.replace(/index\.html$/, '') + location.search + location.hash;
-    history.replaceState(null, '', limpia);
+    history.replaceState(null, '', limpia + location.search + location.hash);
   } catch (e) {
     /* Si el navegador no lo permite, no pasa nada: la página funciona igual. */
   }
