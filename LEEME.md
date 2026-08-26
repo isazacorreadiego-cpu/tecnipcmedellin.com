@@ -186,13 +186,55 @@ Es un sitio estático, así que sirve cualquiera de estas opciones:
 
 | Opción | Costo | Cómo |
 |---|---|---|
-| **Netlify** | Gratis | Arrastre la carpeta `sitio` a app.netlify.com/drop |
-| **Cloudflare Pages** | Gratis | Conecte un repositorio o suba la carpeta |
-| **GitHub Pages** | Gratis | Suba la carpeta a un repositorio y actívelo en Settings |
-| **Hosting tradicional** | Según plan | Suba el contenido de `sitio` por FTP a `public_html` |
+| **Cloudflare Pages** | Gratis | Conecte el repositorio de GitHub. **Recomendado**: el DNS ya está en Cloudflare, así que es una pieza menos |
+| **GitHub Pages** | Gratis | Ya configurado (`CNAME` y `.nojekyll` en el repositorio) |
+| **Netlify** | Gratis | Arrastre la carpeta a app.netlify.com/drop |
+| **Hosting tradicional** | Según plan | Suba el contenido por FTP a `public_html` |
 
 En todos los casos se sube **el contenido de la carpeta `sitio`**, no la carpeta.
 `index.html` debe quedar en la raíz del dominio.
+
+### El montaje de este sitio
+
+- **Dominio:** comprado en Hostinger.
+- **DNS:** administrado por Cloudflare (los *nameservers* de Hostinger apuntan a Cloudflare).
+- **Hosting:** el repositorio `isazacorreadiego-cpu/tecnipcmedellin.com` en GitHub.
+
+#### Dos trampas de Cloudflare + GitHub Pages
+
+Si usa esta combinación, estas dos cosas rompen el sitio y son difíciles de
+diagnosticar después:
+
+1. **El proxy de Cloudflare debe empezar apagado** (nube **gris**, "DNS only") en los
+   registros del dominio. Con el proxy encendido, GitHub ve las IP de Cloudflare en
+   lugar del DNS real, no puede validar la propiedad del dominio y **nunca emite el
+   certificado**. Déjelo gris hasta que en GitHub pueda marcar *Enforce HTTPS*;
+   después ya puede encenderlo si quiere la caché de Cloudflare.
+
+2. **SSL/TLS debe estar en "Full (strict)"**, nunca en "Flexible". En Cloudflare:
+   `SSL/TLS` → `Overview` → **Full (strict)**. Con *Flexible*, Cloudflare pide HTTP a
+   GitHub, GitHub redirige a HTTPS, y queda un bucle infinito de redirecciones.
+
+#### Registros DNS en Cloudflare
+
+Cuatro registros `A` para el dominio raíz (`@`):
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Y un `CNAME` para `www` apuntando a `isazacorreadiego-cpu.github.io`. Eso resuelve
+además la redirección de `www`, que es necesaria porque todas las direcciones
+canónicas del sitio son sin `www`.
+
+#### Si actualiza el sitio y no ve los cambios
+
+Con el proxy de Cloudflare encendido, hay que **purgar la caché**: en Cloudflare,
+`Caching` → `Configuration` → `Purge Everything`. Con Cloudflare Pages esto es
+automático en cada despliegue, que es una de las razones para preferirlo.
 
 ### Pasos para dejarlo en línea
 
@@ -236,6 +278,9 @@ sitio/
 ├── robots.txt              Permisos para buscadores
 ├── sitemap.xml             Mapa del sitio para Google
 ├── site.webmanifest        Datos para instalarlo como app
+├── _headers                Caché y seguridad (solo Cloudflare Pages / Netlify)
+├── CNAME                   Dominio para GitHub Pages
+├── .nojekyll               Desactiva Jekyll en GitHub Pages
 ├── favicon.ico
 └── assets/
     ├── css/estilos.css     Toda la hoja de estilos, comentada por secciones
