@@ -1,0 +1,13 @@
+# Configuración para desplegar en Cloudflare con Workers Static Assets.
+# El sitio es HTML estático: no hay código de Worker, solo archivos que servir.
+
+name = "tecnipcmedellin-com"
+compatibility_date = "2025-06-01"
+
+[assets]
+# Los archivos del sitio están en la raíz del repositorio
+directory = "./"
+
+# Cuando la ruta no existe, sirve 404.html en lugar de un error genérico.
+# Esto es lo que hace que la página de error propia funcione en producción.
+not_found_handling = "404-page"
