@@ -1,0 +1,4 @@
+# Red de seguridad para la raíz. Con html_handling = "none", Cloudflare sirve
+# las rutas tal cual; esta regla garantiza que / entregue index.html sin
+# redirigir (el 200 al final significa reescritura, no redirección).
+/    /index.html    200
