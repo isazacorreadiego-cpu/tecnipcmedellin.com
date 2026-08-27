@@ -1391,6 +1391,34 @@ a.contacto-item:hover { border-color: rgb(34 211 245 / 0.55); transform: transla
 
 }
 
+/* --- 25. Texto largo de lectura (privacidad y similares) ---------------- */
+.prosa { max-width: 68ch; }
+.prosa h2 {
+  font-size: var(--t-lg);
+  margin-top: 2.4rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--pista-tenue);
+}
+.prosa h2:first-child { margin-top: 0; padding-top: 0; border-top: 0; }
+.prosa h3 {
+  font-family: var(--cuerpo);
+  font-variation-settings: normal;
+  font-size: var(--t-md);
+  font-weight: 600;
+  letter-spacing: 0;
+  margin-top: 1.6rem;
+  color: var(--cian);
+}
+.prosa p { margin-top: 0.9rem; color: var(--acero); }
+.prosa p b { color: var(--blanco); font-weight: 600; }
+.prosa ul { margin-top: 1rem; }
+.prosa .nota {
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--pista-tenue);
+  border-radius: var(--radio-sm);
+  background: rgb(10 19 34 / 0.6);
+}
+
 /* --- 22. Adaptación ----------------------------------------------------- */
 @media (min-width: 1380px) {
   .flotante span { display: inline; }
