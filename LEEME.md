@@ -62,7 +62,7 @@ forma correcta de manejarse:
   que se declare un negocio sin local.
 - El mensaje del sitio convierte esto en ventaja: *"no tiene que traerlo, vamos por él"*.
 
-**Publicar la dirección de la casa sería contraproducente**, y no solo por privacidad:
+**Publicar una dirección sin atención al público sería contraproducente**, y no solo por privacidad:
 Google penaliza los perfiles con una dirección donde no se atiende público, y las
 reseñas negativas por "fui y no había nada" hacen daño real.
 
@@ -70,7 +70,7 @@ reseñas negativas por "fui y no había nada" hacen daño real.
 
 Cuando cree el perfil del negocio, elija **"Presto servicios a domicilio"** y marque
 que **no** tiene local que los clientes puedan visitar. Google le va a pedir una
-dirección real para verificar por correo postal, pero al marcar esa opción la
+dirección para verificar por correo postal, pero al marcar esa opción la
 **mantiene oculta** al público: los clientes solo ven la zona de cobertura.
 
 Defina las zonas exactamente como están en el sitio: Medellín, Envigado, Sabaneta,
