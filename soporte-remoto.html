@@ -52,13 +52,19 @@
   "description": "Asistencia técnica por conexión remota para computadores y portátiles. Se resuelve sin desplazar el equipo y sin costo si no se soluciona.",
   "provider": {
     "@type": "ComputerRepairService",
+    "@id": "https://tecnipcmedellin.com/#negocio",
     "name": "TecniPC Medellín",
     "telephone": "+57 318 949 0552",
     "email": "tecnipcm@gmail.com",
     "url": "https://tecnipcmedellin.com/",
-    "sameAs": ["https://www.instagram.com/tecnipcmedellin/"]
+    "sameAs": [
+      "https://www.instagram.com/tecnipcmedellin/"
+    ]
   },
-  "areaServed": { "@type": "Country", "name": "Colombia" },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Colombia"
+  },
   "availableChannel": {
     "@type": "ServiceChannel",
     "serviceUrl": "https://tecnipcmedellin.com/soporte-remoto",
@@ -91,6 +97,26 @@
       "@type": "Question",
       "name": "¿Necesito instalar algo?",
       "acceptedAnswer": { "@type": "Answer", "text": "Un programa liviano de conexión que no requiere instalación ni permisos de administrador. Le guiamos paso a paso por WhatsApp y toma menos de dos minutos." }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Inicio",
+      "item": "https://tecnipcmedellin.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Soporte remoto",
+      "item": "https://tecnipcmedellin.com/soporte-remoto"
     }
   ]
 }
@@ -168,7 +194,7 @@
       </div>
 
       <figure class="encabezado-pagina__lamina">
-        <img src="assets/img/nube-respaldo.webp" width="1000" height="706" alt="Computadores, portátiles y dispositivos conectados a través de la nube" fetchpriority="high">
+        <img src="assets/img/nube-respaldo-540.webp" srcset="assets/img/nube-respaldo-540.webp 540w, assets/img/nube-respaldo.webp 1000w" sizes="(max-width: 900px) 92vw, 400px" width="1000" height="706" alt="Computadores, portátiles y dispositivos conectados a través de la nube" fetchpriority="high">
       </figure>
     </div>
   </div>
@@ -365,7 +391,7 @@
     </div>
 
     <figure class="lamina-suelta" data-aparece="1">
-      <img src="assets/img/seguridad.webp" width="1000" height="740" alt="Ilustración de seguridad informática con portátil, escudo y candados" loading="lazy">
+      <img src="assets/img/seguridad-540.webp" srcset="assets/img/seguridad-540.webp 540w, assets/img/seguridad.webp 1000w" sizes="(max-width: 900px) 92vw, 400px" width="1000" height="740" alt="Ilustración de seguridad informática con portátil, escudo y candados" loading="lazy">
       <figcaption>Una sesión remota bien hecha es tan segura como una llamada: usted controla cuándo empieza y cuándo termina.</figcaption>
     </figure>
   </div>

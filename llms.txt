@@ -1,0 +1,56 @@
+# TecniPC Medellín
+
+> Servicio técnico de computadores y portátiles en Medellín y el Valle de Aburrá.
+> Diagnóstico primero, cotización después: no se cobra ninguna reparación sin autorización previa del cliente.
+> Operación desde 2006. Atención a domicilio y en taller con cita previa; soporte remoto en toda Colombia.
+
+## Datos de la empresa
+
+- Nombre: TecniPC Medellín
+- Sitio: https://tecnipcmedellin.com/
+- Ciudad base: Medellín, Antioquia, Colombia
+- Cobertura presencial: Medellín, Envigado, Itagüí, Bello, Sabaneta, La Estrella y Copacabana
+- Cobertura remota: toda Colombia
+- Modalidad: servicio a domicilio y taller con cita previa (sin local abierto al público)
+- Horario: lunes a viernes 08:00-18:00; sábados 09:00-14:00
+- Garantía: 90 días sobre mano de obra; garantía de fabricante sobre cada repuesto
+- Idioma de atención: español
+
+## Servicios
+
+- Diagnóstico y reparación de computadores y portátiles
+- Reparación electrónica a nivel de placa
+- Mantenimiento preventivo y cambio de pasta térmica
+- Migración a disco SSD
+- Recuperación de datos
+- Armado de PC a la medida (oficina, creación y gaming)
+- Instalación de software, Windows, controladores y periféricos
+- Soporte técnico remoto
+- Respaldo en la nube y seguridad informática
+- Venta e instalación de componentes y repuestos
+
+## Páginas principales
+
+- [Inicio](https://tecnipcmedellin.com/): resumen del servicio técnico, proceso de atención y preguntas frecuentes.
+- [Servicios](https://tecnipcmedellin.com/servicios): catálogo completo con tiempos de respuesta por tipo de trabajo.
+- [Soporte remoto](https://tecnipcmedellin.com/soporte-remoto): asistencia a distancia en toda Colombia.
+- [Armamos tu PC](https://tecnipcmedellin.com/armamos-tu-pc): ensamble a la medida según el uso real del equipo.
+- [Componentes](https://tecnipcmedellin.com/componentes): SSD, tarjetas gráficas, procesadores, fuentes y refrigeración.
+- [Instalación de software](https://tecnipcmedellin.com/instalacion-de-software): Windows, Office, programas contables y de diseño.
+- [Contacto](https://tecnipcmedellin.com/contacto): canales de atención y recogida del equipo.
+
+## Guías de diagnóstico
+
+- [El computador no enciende](https://tecnipcmedellin.com/computador-no-enciende): qué revisar antes de gastar dinero.
+- [El computador está lento](https://tecnipcmedellin.com/computador-lento): causas reales y cuándo conviene invertir.
+- [Se regó líquido en el portátil](https://tecnipcmedellin.com/liquido-en-el-portatil): qué hacer en los primeros minutos y por qué el arroz no sirve.
+
+## Cobertura por municipio
+
+- [Reparación de computadores en Envigado](https://tecnipcmedellin.com/reparacion-computadores-envigado)
+- [Reparación de computadores en Bello](https://tecnipcmedellin.com/reparacion-computadores-bello)
+- [Reparación de computadores en Itagüí](https://tecnipcmedellin.com/reparacion-computadores-itagui)
+
+## Opcional
+
+- [Política de privacidad](https://tecnipcmedellin.com/privacidad): tratamiento de datos conforme a la Ley 1581 de 2012.

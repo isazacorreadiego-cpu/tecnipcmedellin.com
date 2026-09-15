@@ -50,6 +50,7 @@
 {
   "@context": "https://schema.org",
   "@type": "ComputerRepairService",
+  "@id": "https://tecnipcmedellin.com/#negocio",
   "name": "TecniPC Medellín",
   "description": "Servicio técnico de computadores, portátiles y armado de PC a la medida en Medellín. Atendemos a domicilio y en taller con cita previa en todo el Valle de Aburrá.",
   "url": "https://tecnipcmedellin.com/",
@@ -72,34 +73,117 @@
   },
   "serviceArea": {
     "@type": "GeoCircle",
-    "geoMidpoint": { "@type": "GeoCoordinates", "latitude": 6.2442, "longitude": -75.5812 },
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": 6.2442,
+      "longitude": -75.5812
+    },
     "geoRadius": "25000"
   },
   "availableLanguage": "es",
   "areaServed": [
-    { "@type": "City", "name": "Medellín" },
-    { "@type": "City", "name": "Envigado" },
-    { "@type": "City", "name": "Itagüí" },
-    { "@type": "City", "name": "Bello" },
-    { "@type": "City", "name": "Sabaneta" },
-    { "@type": "City", "name": "La Estrella" },
-    { "@type": "City", "name": "Copacabana" }
+    {
+      "@type": "City",
+      "name": "Medellín"
+    },
+    {
+      "@type": "City",
+      "name": "Envigado"
+    },
+    {
+      "@type": "City",
+      "name": "Itagüí"
+    },
+    {
+      "@type": "City",
+      "name": "Bello"
+    },
+    {
+      "@type": "City",
+      "name": "Sabaneta"
+    },
+    {
+      "@type": "City",
+      "name": "La Estrella"
+    },
+    {
+      "@type": "City",
+      "name": "Copacabana"
+    }
   ],
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:00", "closes": "18:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "14:00" }
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "14:00"
+    }
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": "Servicios",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Soporte técnico remoto en toda Colombia" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico y reparación de computadores" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mantenimiento preventivo y cambio de pasta térmica" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Migración a disco SSD" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Recuperación de datos" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Armado de PC a la medida" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Respaldo en la nube y seguridad" } }
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Soporte técnico remoto en toda Colombia"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Diagnóstico y reparación de computadores"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Mantenimiento preventivo y cambio de pasta térmica"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Migración a disco SSD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Recuperación de datos"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Armado de PC a la medida"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Respaldo en la nube y seguridad"
+        }
+      }
     ]
   }
 }
