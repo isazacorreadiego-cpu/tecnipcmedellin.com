@@ -9,7 +9,7 @@
 - Nombre: TecniPC Medellín
 - Sitio: https://tecnipcmedellin.com/
 - Ciudad base: Medellín, Antioquia, Colombia
-- Cobertura presencial: Medellín, Envigado, Itagüí, Bello, Sabaneta, La Estrella y Copacabana
+- Cobertura presencial: los 10 municipios del Área Metropolitana del Valle de Aburrá: Medellín, Barbosa, Girardota, Copacabana, Bello, Itagüí, Envigado, Sabaneta, La Estrella y Caldas
 - Cobertura remota: toda Colombia
 - Modalidad: servicio a domicilio y taller con cita previa (sin local abierto al público)
 - Horario: lunes a viernes 08:00-18:00; sábados 09:00-14:00

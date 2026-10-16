@@ -46,7 +46,7 @@
 
   /* Ritmo */
   --ancho:  1120px;
-  --canal:  clamp(1rem, 4vw, 2.5rem);
+  --canal:  max(clamp(1rem, 4vw, 2.5rem), env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px));
   --aire:   clamp(4.5rem, 9vw, 7.5rem);
   --radio:  22px;
   --radio-lg: 28px;
@@ -62,6 +62,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 72px;
   -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -95,7 +96,6 @@ a {
   color: var(--enlace);
   text-decoration: none;
 }
-a:hover { text-decoration: underline; text-underline-offset: 3px; }
 
 :focus-visible {
   outline: 2px solid var(--azul);
@@ -164,6 +164,7 @@ main > section:nth-of-type(even):not(.portada) {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid transparent;
+  padding-top: env(safe-area-inset-top, 0px);
   transition: border-color 0.3s var(--curva);
 }
 .barra[data-fija='si'] { border-bottom-color: rgb(0 0 0 / 0.1); }
@@ -215,7 +216,7 @@ main > section:nth-of-type(even):not(.portada) {
   padding-block: 6px;
   transition: color 0.2s var(--curva);
 }
-.menu a:hover, .menu a[aria-current='page'] { color: var(--tinta); text-decoration: none; }
+.menu a[aria-current='page'] { color: var(--tinta); }
 .menu a[aria-current='page'] { font-weight: 600; }
 
 .menu .boton {
@@ -273,20 +274,18 @@ main > section:nth-of-type(even):not(.portada) {
   cursor: pointer;
   white-space: nowrap;
   transition: background 0.2s var(--curva), color 0.2s var(--curva),
-              border-color 0.2s var(--curva);
+              border-color 0.2s var(--curva), transform 0.1s ease-out;
 }
 .boton:hover { text-decoration: none; }
 .boton svg { width: 18px; height: 18px; flex: none; }
 
 .boton--principal { background: var(--azul); color: #fff; }
-.boton--principal:hover { background: var(--azul-hover); color: #fff; }
 
 .boton--linea {
   background: transparent;
   border-color: var(--azul);
   color: var(--azul);
 }
-.boton--linea:hover { background: var(--azul); color: #fff; }
 
 .boton--ancho { width: 100%; }
 
@@ -458,7 +457,6 @@ main > section:nth-of-type(even):not(.portada) {
   cursor: pointer;
   transition: background 0.2s var(--curva), border-color 0.2s var(--curva), color 0.2s var(--curva);
 }
-.sintoma:hover { border-color: var(--texto-3); }
 .sintoma[aria-pressed='true'] {
   background: var(--tinta);
   border-color: var(--tinta);
@@ -646,7 +644,6 @@ main > section:nth-of-type(even):not(.portada) {
   object-fit: contain;
   transition: transform 0.5s var(--curva);
 }
-.pieza:hover .pieza__marco img { transform: scale(1.04); }
 
 .pieza__nombre { font-size: var(--t-md); line-height: 1.2; margin-bottom: 0.4rem; letter-spacing: -0.022em; }
 .pieza__texto  { font-size: var(--t-sm); color: var(--texto-2); }
@@ -904,7 +901,6 @@ main > section:nth-of-type(even):not(.portada) {
   text-decoration: none;
   color: inherit;
 }
-a.contacto-item:hover { color: inherit; text-decoration: none; background: var(--linea); }
 .contacto-item svg { width: 20px; height: 20px; color: var(--azul); flex: none; margin-top: 2px; }
 .contacto-item dt { font-size: var(--t-xs); color: var(--texto-2); }
 .contacto-item dd { margin: 0.15rem 0 0; font-size: var(--t-base); font-weight: 500; }
@@ -918,7 +914,7 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
 }
 /* Si la última sección ya es gris, el pie no necesita aire blanco en medio */
 .pie__fondo { display: none; }
-.pie__interior { padding-block: clamp(2.4rem, 5vw, 3.4rem) 5.5rem; }
+.pie__interior { padding-block: clamp(2.4rem, 5vw, 3.4rem) calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
 
 .pie__reja {
   display: grid;
@@ -945,7 +941,6 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
 /* Teléfono y WhatsApp deben ser cómodos de tocar */
 .pie__lista a { padding-block: 0.55rem; line-height: 1.4; }
 .pie__lista span { padding-block: 0.55rem; line-height: 1.4; }
-.pie__lista a:hover { color: var(--tinta); text-decoration: underline; }
 
 .pie__base {
   display: flex;
@@ -962,8 +957,8 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
 /* --- 20. Botón flotante de WhatsApp ------------------------------------- */
 .flotante {
   position: fixed;
-  right: clamp(1rem, 3vw, 1.8rem);
-  bottom: clamp(1rem, 3vw, 1.8rem);
+  right: calc(clamp(1rem, 3vw, 1.8rem) + env(safe-area-inset-right, 0px));
+  bottom: calc(clamp(1rem, 3vw, 1.8rem) + env(safe-area-inset-bottom, 0px));
   z-index: 90;
   display: flex;
   align-items: center;
@@ -978,7 +973,6 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
   box-shadow: 0 8px 24px -6px rgb(0 0 0 / 0.28);
   transition: transform 0.25s var(--curva);
 }
-.flotante:hover { color: #fff; text-decoration: none; transform: scale(1.04); }
 .flotante svg { width: 22px; height: 22px; flex: none; }
 .flotante span { display: none; }
 
@@ -1017,7 +1011,6 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
   color: var(--texto-3);
 }
 .migas a { color: var(--texto-2); display: inline-block; padding-block: 0.5rem; }
-.migas a:hover { color: var(--tinta); }
 
 .encabezado-pagina__reja {
   display: grid;
@@ -1208,6 +1201,75 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
   background: var(--mosaico);
 }
 
+/* --- 26. Tacto y puntero ------------------------------------------------ */
+/* Controles: respuesta inmediata al toque y sin seleccionar su texto al
+   mantener presionado. Los enlaces de contacto quedan fuera a propósito:
+   ahí sí sirve poder copiar el teléfono o el correo. */
+.boton, .sintoma, .boton-menu, .pregunta summary, .flotante, .menu a,
+.contacto-item, .pie__lista a, .migas a {
+  touch-action: manipulation;
+}
+.boton, .sintoma, .boton-menu, .pregunta summary, .flotante {
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.boton:active, .flotante:active { transform: scale(0.97); }
+.sintoma {
+  transition: background 0.2s var(--curva), border-color 0.2s var(--curva),
+              color 0.2s var(--curva), transform 0.1s ease-out;
+}
+.sintoma:active { transform: scale(0.96); }
+.boton-menu:active, .pregunta summary:active, .menu a:active { opacity: 0.6; }
+a.contacto-item { transition: background 0.15s ease-out; }
+a.contacto-item:active { background: var(--linea); }
+
+/* Los estados de puntero solo donde hay un puntero que puede flotar: en el
+   teléfono, un :hover se queda pegado después del toque. */
+@media (hover: hover) and (pointer: fine) {
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  .menu a:hover { color: var(--tinta); text-decoration: none; }
+  .boton--principal:hover { background: var(--azul-hover); color: #fff; }
+  .boton--linea:hover { background: var(--azul); color: #fff; }
+  .sintoma:hover { border-color: var(--texto-3); }
+  .pieza:hover .pieza__marco img { transform: scale(1.04); }
+  a.contacto-item:hover { color: inherit; text-decoration: none; background: var(--linea); }
+  .pie__lista a:hover { color: var(--tinta); text-decoration: underline; }
+  .flotante:hover { color: #fff; text-decoration: none; transform: scale(1.04); }
+  .migas a:hover { color: var(--tinta); }
+}
+
+/* --- 27. Letra pequeña -------------------------------------------------- */
+/* El interletrado negativo solo sirve en tamaños grandes; a 12 px estorba */
+.pie, .migas, .nota, .lectura__dato dt, .lectura__causa, .pieza__pie,
+.equipo__marca, .contacto-item dt, .tarifas thead th, .ficha, .zonas li {
+  letter-spacing: 0;
+}
+
+/* --- 28. Preferencias de accesibilidad del sistema ---------------------- */
+@media (prefers-reduced-transparency: reduce) {
+  .barra, .equipo__marca {
+    background: var(--fondo);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --texto-2: #424245;
+    --texto-3: #6e6e73;
+    --linea: #86868b;
+    --gris-osc: #d2d2d7;
+  }
+  .barra { background: var(--fondo); border-bottom-color: var(--linea); }
+  .tarjeta, .pieza, .equipo, .paso, .panel, .preguntas, .formulario, .remate,
+  .contacto-item, .lectura, .diagnostico, .tarifas, .zonas li, .sintoma {
+    box-shadow: inset 0 0 0 1px var(--linea);
+  }
+}
+
 /* --- 22. Adaptación ----------------------------------------------------- */
 @media (min-width: 1380px) {
   .flotante { padding: 0.8rem 1.15rem; }
@@ -1225,14 +1287,15 @@ a.contacto-item:hover { color: inherit; text-decoration: none; background: var(-
   .boton-menu { display: flex; }
   .menu {
     position: fixed;
-    inset: 56px 0 auto;
-    height: calc(100dvh - 56px);
+    inset: calc(56px + env(safe-area-inset-top, 0px)) 0 auto;
+    height: calc(100dvh - 56px - env(safe-area-inset-top, 0px));
+    overscroll-behavior: contain;
     overflow-y: auto;
     flex-direction: column;
     align-items: stretch;
     gap: 0;
     margin: 0;
-    padding: 1rem var(--canal) 2rem;
+    padding: 1rem var(--canal) calc(2rem + env(safe-area-inset-bottom, 0px));
     background: var(--fondo);
     opacity: 0;
     visibility: hidden;

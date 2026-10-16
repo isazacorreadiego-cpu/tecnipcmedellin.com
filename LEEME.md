@@ -57,7 +57,7 @@ forma correcta de manejarse:
 - El sitio **no muestra dirección de calle**. En su lugar declara la zona que cubre
   (`cobertura`) y cómo recibe los equipos (`entrega`).
 - La ficha que lee Google (`application/ld+json` en `index.html`) usa
-  `serviceArea` con un radio de 25 km alrededor de Medellín, y un `address` que solo
+  `serviceArea` con un radio de 40 km alrededor de Medellín (alcanza de Barbosa a Caldas), y un `address` que solo
   dice ciudad, departamento y país, **sin `streetAddress`**. Así es como Google espera
   que se declare un negocio sin local.
 - El mensaje del sitio convierte esto en ventaja: *"no tiene que traerlo, vamos por él"*.
@@ -73,8 +73,9 @@ que **no** tiene local que los clientes puedan visitar. Google le va a pedir una
 dirección para verificar por correo postal, pero al marcar esa opción la
 **mantiene oculta** al público: los clientes solo ven la zona de cobertura.
 
-Defina las zonas exactamente como están en el sitio: Medellín, Envigado, Sabaneta,
-Itagüí, Bello, La Estrella y Copacabana. Que coincidan ayuda al posicionamiento.
+Defina las zonas exactamente como están en el sitio: Medellín, Barbosa, Girardota,
+Copacabana, Bello, Itagüí, Envigado, Sabaneta, La Estrella y Caldas. Que coincidan
+ayuda al posicionamiento.
 
 ---
 
