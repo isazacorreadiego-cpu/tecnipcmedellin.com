@@ -185,7 +185,7 @@ main > section:nth-of-type(even):not(.portada) {
   flex: none;
 }
 .marca:hover { text-decoration: none; }
-.marca img { width: 34px; height: auto; }
+.marca img { width: 38px; height: auto; }
 .marca__texto { display: flex; flex-direction: column; line-height: 1; }
 .marca__nombre {
   font-family: var(--display);
