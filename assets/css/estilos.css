@@ -305,7 +305,9 @@ main > section:nth-of-type(even):not(.portada) {
 .subtitulo-pagina { max-width: 58ch; color: var(--texto-2); }
 
 /* --- 6. Portada --------------------------------------------------------- */
-/* Titular centrado sobre blanco y la foto del taller como lámina grande debajo */
+/* La foto del escritorio deja libre la zona clara de la izquierda: en
+   escritorio va de fondo a todo el ancho y el titular ocupa esa zona. En
+   celular y tableta, titular centrado arriba y la foto debajo. */
 .portada { padding: 0; }
 
 .portada__banda {
@@ -366,24 +368,69 @@ main > section:nth-of-type(even):not(.portada) {
 }
 
 .portada__banda picture {
-  position: relative;
   display: block;
-  width: min(100% - var(--canal) * 2, var(--ancho));
-  aspect-ratio: 1738 / 905;
-  margin-top: clamp(2.6rem, 5vw, 4rem);
-  border-radius: var(--radio-lg);
-  overflow: hidden;
-  background: #0a1830;
+  width: 100%;
+  aspect-ratio: 1200 / 746;
+  margin-top: clamp(1.6rem, 5vw, 2.6rem);
 }
+/* Los bordes de la foto se funden con el blanco: ninguna línea de corte */
 .portada__banda img {
-  position: absolute;
-  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 70% 45%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 22%, #000 84%, transparent 100%);
 }
 .portada__velo { display: none; }
+
+@media (min-width: 901px) {
+  .portada__banda {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    align-items: stretch;
+    padding-block: clamp(3.5rem, 6vw, 5.5rem) clamp(5rem, 9vw, 8rem);
+  }
+  /* Apoyada abajo y en su proporción natural: nunca se recorta en alto */
+  .portada__banda picture {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: -2;
+    width: max(100%, 1180px);
+    aspect-ratio: 2100 / 747;
+    margin: 0;
+  }
+  .portada__banda img {
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 26%, #000 78%, transparent 100%);
+    mask-image: linear-gradient(to bottom, transparent 0, #000 26%, #000 78%, transparent 100%);
+  }
+
+  .portada__texto {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .portada__texto > * { max-width: min(40rem, 58%); }
+  .portada__titulo { font-size: clamp(2.7rem, 0.8rem + 3vw, 3.75rem); }
+  .portada__sub { margin-inline: 0; }
+  .portada__texto .sellos { justify-content: flex-start; }
+}
+
+/* En pantallas angostas de escritorio la foto se corre a la derecha y un velo
+   blanco suave protege el texto donde alcanza la planta */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .portada__banda picture { right: -16%; }
+  .portada__velo {
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(90deg,
+      rgb(255 255 255 / 0.9) 0%,
+      rgb(255 255 255 / 0.75) 40%,
+      rgb(255 255 255 / 0) 60%);
+  }
+}
 
 .portada__panel {
   padding-block: clamp(2rem, 4vw, 3rem) calc(var(--aire) * 0.6);
@@ -912,9 +959,42 @@ main > section:nth-of-type(even):not(.portada) {
   font-size: var(--t-xs);
   color: var(--texto-2);
 }
-/* Si la última sección ya es gris, el pie no necesita aire blanco en medio */
-.pie__fondo { display: none; }
-.pie__interior { padding-block: clamp(2.4rem, 5vw, 3.4rem) calc(5.5rem + env(safe-area-inset-bottom, 0px)); }
+/* El pie cierra con la foto del escritorio a todo el ancho: los enlaces van
+   sobre su parte clara (que se funde con el gris) y la ola azul de abajo
+   continúa en la franja final, donde va el copyright en claro. */
+.pie {
+  --pie-mar: #0b1a33;
+  /* Alto de la foto: solo lo justo para el portátil completo y la ola. La foto
+     escala con el ancho y el portátil arranca al 67 % de su alto natural
+     (36,05vw) contando desde abajo, es decir a 24,15vw; se suma un margen. */
+  --pie-foto: calc(24.15vw + 3rem);
+  overflow-x: clip;
+}
+.pie__interior { padding-top: clamp(2.4rem, 5vw, 3.4rem); }
+
+.pie__fondo {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100vw;
+  max-width: none;
+  height: var(--pie-foto);
+  /* Arranca pegada a las columnas: el cielo vacío de la foto queda recortado */
+  margin: -1.5rem calc(50% - 50vw) 0;
+  object-fit: cover;
+  object-position: 80% 100%;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 14%);
+}
+.pie__reja { position: relative; z-index: 1; }
+
+/* En pantallas muy anchas el portátil cae a la derecha del contenedor, así que
+   la foto puede subir por detrás de las columnas: el teclado y el mouse siguen
+   quedando por debajo del último enlace y el pie se compacta. */
+@media (min-width: 1700px) {
+  .pie__fondo { margin-top: calc(-11.89vw - 1rem); }
+}
 
 .pie__reja {
   display: grid;
@@ -947,12 +1027,27 @@ main > section:nth-of-type(even):not(.portada) {
   flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 2.2rem;
-  padding-top: 1.2rem;
-  border-top: 1px solid var(--linea);
+  margin-top: 0;
+  padding-block: 1rem calc(4.5rem + env(safe-area-inset-bottom, 0px));
   font-size: var(--t-xs);
+  color: var(--gris-osc);
+  position: relative;
+  /* Fondo azul a todo el ancho aunque el bloque vaya dentro del contenedor */
+  border-image: conic-gradient(var(--pie-mar) 0 0) fill 0 // 0 100vmax;
 }
-.pie__base a { color: var(--texto-2); text-decoration: underline; }
+/* El borde inferior de la foto varía de tono: este degradado lo une sin costura
+   con el azul de la franja */
+.pie__base::before {
+  content: '';
+  position: absolute;
+  inset: auto -100vmax 100%;
+  height: calc(var(--pie-foto) * 0.2);
+  background: linear-gradient(to bottom, rgb(11 26 51 / 0), var(--pie-mar));
+  pointer-events: none;
+}
+.pie__base a { color: var(--gris-osc); text-decoration: underline; }
+.pie__base a:hover { color: #fff; }
+.pie__base a:focus-visible { outline-color: var(--enlace-osc); }
 
 /* --- 20. Botón flotante de WhatsApp ------------------------------------- */
 .flotante {
@@ -1322,12 +1417,10 @@ a.contacto-item:active { background: var(--linea); }
   .menu .boton svg { width: 18px; height: 18px; }
 }
 
-@media (max-width: 700px) {
-  .portada__banda picture { aspect-ratio: 4 / 5; border-radius: var(--radio); }
-  .portada__banda img { object-position: 60% 30%; }
-}
-
 @media (max-width: 620px) {
+  /* En el celular la foto del pie se recorta hacia el portátil */
+  .pie { --pie-foto: 210px; }
+  .pie__fondo { margin-top: -1.5rem; object-position: 100% 100%; }
   .pie__reja { grid-template-columns: 1fr; gap: 1.6rem; }
   .tarjeta--servicio { grid-column: span 6; }   /* una por fila */
   .lectura__datos { grid-template-columns: 1fr; }
@@ -1348,7 +1441,9 @@ a.contacto-item:active { background: var(--linea); }
 }
 
 @media print {
-  .flotante, .barra { display: none; }
+  .flotante, .barra, .pie__fondo, .portada__velo { display: none; }
+  .pie__base { border-image: none; color: #000; }
+  .pie__base::before { content: none; }
   body { background: #fff; color: #000; }
   .garantia, .tarjeta--foto { background: #fff; color: #000; }
 }

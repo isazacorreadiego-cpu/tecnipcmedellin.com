@@ -41,8 +41,8 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="image" href="assets/img/hero-taller.webp" media="(min-width: 701px)">
-<link rel="preload" as="image" href="assets/img/hero-taller-movil.webp" media="(max-width: 700px)">
+<link rel="preload" as="image" href="assets/img/cabecera-taller.webp" imagesrcset="assets/img/cabecera-taller-1280.webp 1280w, assets/img/cabecera-taller.webp 2100w" imagesizes="max(100vw, 1180px)" media="(min-width: 901px)">
+<link rel="preload" as="image" href="assets/img/cabecera-taller-movil.webp" imagesrcset="assets/img/cabecera-taller-movil-720.webp 720w, assets/img/cabecera-taller-movil.webp 1200w" imagesizes="100vw" media="(max-width: 900px)">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/estilos.css">
 
@@ -274,13 +274,18 @@
 <!-- ================================ Portada =============================== -->
 <section class="portada">
 
-  <!-- La imagen de cabecera está compuesta con la zona oscura a la izquierda:
-       ahí va el titular. Por eso ocupa todo el ancho en vez de ir encajonada. -->
+  <!-- La foto de cabecera deja libre la zona clara de la izquierda: en escritorio
+       va de fondo y el titular ocupa esa zona. En celular y tableta se usa un
+       recorte de la mitad derecha (el portátil abierto), debajo del titular. -->
   <div class="portada__banda">
     <picture>
-      <source media="(max-width: 700px)" srcset="assets/img/hero-taller-movil.webp">
-      <img src="assets/img/hero-taller.webp" width="1738" height="905"
-           alt="Técnico de TecniPC Medellín trabajando en el interior de un computador de escritorio"
+      <source media="(max-width: 900px)" sizes="100vw"
+              srcset="assets/img/cabecera-taller-movil-720.webp 720w, assets/img/cabecera-taller-movil.webp 1200w"
+              width="1200" height="746">
+      <img src="assets/img/cabecera-taller.webp" sizes="max(100vw, 1180px)"
+           srcset="assets/img/cabecera-taller-1280.webp 1280w, assets/img/cabecera-taller.webp 2100w"
+           width="2100" height="747"
+           alt="Portátil abierto con la placa a la vista sobre un escritorio, junto a un destornillador de precisión y un monitor"
            fetchpriority="high">
     </picture>
     <div class="portada__velo"></div>
@@ -924,7 +929,6 @@
 
 <!-- ================================== Pie ================================= -->
 <footer class="pie">
-  <img class="pie__fondo" src="assets/img/pie-circuito.webp" width="1200" height="600" alt="" aria-hidden="true" loading="lazy">
   <div class="envoltura pie__interior">
     <div class="pie__reja">
 
@@ -977,6 +981,7 @@
 
     </div>
 
+    <img class="pie__fondo" src="assets/img/pie-escritorio.webp" srcset="assets/img/pie-escritorio-1000.webp 1000w, assets/img/pie-escritorio.webp 2000w" sizes="100vw" width="2000" height="721" alt="" aria-hidden="true" loading="lazy" decoding="async">
     <div class="pie__base">
       <p>© <span data-anio>2026</span> TecniPC Medellín. Todos los derechos reservados. · <a href="privacidad.html">Privacidad</a></p>
       <p data-negocio="horario">Lunes a viernes 8:00 a.m. – 6:00 p.m. · Sábados 9:00 a.m. – 2:00 p.m.</p>
