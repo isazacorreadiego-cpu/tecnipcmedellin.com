@@ -7,7 +7,7 @@
      configurarlas a nivel de servidor, pero el navegador respeta estas dos.
      HSTS y X-Frame-Options solo existen como cabecera HTTP: no se pueden
      declarar aquí. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- Google tag (gtag.js) -->
@@ -28,9 +28,6 @@
 <!-- Las tipografías van por URL absoluta a Google: no dependen de la ruta del
      sitio, así que cargan igual desde la raíz, desde una ruta profunda o desde
      el disco. Si no hay internet, las pilas de respaldo del CSS se encargan. -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <!-- ===========================================================================
      Por lo demás esta página es AUTÓNOMA a propósito: no carga hojas de estilo, ni scripts,
@@ -45,6 +42,14 @@
      Si cambia los colores del sitio, actualice también los de aquí abajo.
      =========================================================================== -->
 <style>
+  /* Ruta absoluta: esta página se sirve en cualquier dirección que no exista. */
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('/assets/fuentes/inter-latin-variable.woff2') format('woff2');
+  }
   :root {
     color-scheme: light;
     --fondo: #ffffff;

@@ -7,7 +7,7 @@
      configurarlas a nivel de servidor, pero el navegador respeta estas dos.
      HSTS y X-Frame-Options solo existen como cabecera HTTP: no se pueden
      declarar aquí. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://www.google.com; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com; form-action 'self'; base-uri 'self'; object-src 'none'; upgrade-insecure-requests">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <!-- Google tag (gtag.js) -->
@@ -39,11 +39,8 @@
 <link rel="apple-touch-icon" href="assets/img/icono-180.png">
 <link rel="manifest" href="site.webmanifest">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="image" href="assets/img/cabecera-taller.webp" imagesrcset="assets/img/cabecera-taller-1280.webp 1280w, assets/img/cabecera-taller.webp 2100w" imagesizes="max(100vw, 1180px)" media="(min-width: 901px)">
 <link rel="preload" as="image" href="assets/img/cabecera-taller-movil.webp" imagesrcset="assets/img/cabecera-taller-movil-720.webp 720w, assets/img/cabecera-taller-movil.webp 1200w" imagesizes="100vw" media="(max-width: 900px)">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/estilos.css">
 
 <script type="application/ld+json">
@@ -292,11 +289,11 @@
 
     <div class="envoltura portada__texto">
       <p class="rotulo">Servicio técnico en Medellín</p>
-      <h1 class="portada__titulo">
+      <p class="portada__titulo">
         Primero encontramos<br>la falla.
         <em>Después la arreglamos.</em>
-      </h1>
-      <h2 class="portada__sub">Servicio técnico de computadores y portátiles en Medellín</h2>
+      </p>
+      <h1 class="portada__sub">Servicio técnico de computadores y portátiles en Medellín</h1>
       <p class="portada__entrada">
         Nadie debería pagar por un repuesto que no necesita. Revisamos su equipo,
         le explicamos qué falló y usted decide con la cotización en la mano.
